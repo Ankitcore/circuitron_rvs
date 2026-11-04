@@ -60,6 +60,16 @@
   animation: bounceAnim 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+.z-40 {
+  z-index: 40 !important;
+}
+
+@media (min-width: 420px) {
+  .xs\:flex {
+    display: flex !important;
+  }
+}
+
 /* Laser Circuit Trace Pulse */
 @keyframes laserDash1 {
   0% {
