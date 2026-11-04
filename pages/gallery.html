@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#050816" />
+        <!-- Security & Integrity Headers (Anti-Tampering & XSS Shield) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    <meta name="description" content="Explore photos and media highlights from previous TechXpo editions, workshops, and robotics competitions." />
+    <title>Photo Gallery &amp; Media | TechXpo 2.O</title>
+    <link rel="icon" type="image/svg+xml" href="../logo.svg" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="apple-touch-icon" href="../logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body class="bg-[#050816] text-white font-poppins selection:bg-accent selection:text-darkNavy relative min-h-screen overflow-x-hidden">
+    <!-- Top Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 h-[2.5px] z-[100] pointer-events-none bg-transparent">
+      <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-primary via-accent to-cyberPurple origin-left shadow-[0_0_12px_rgba(0,191,255,0.8)]" style="width: 0%;"></div>
+    </div>
+
+    <!-- Spotlight Follower -->
+    <div id="cyber-spotlight" class="fixed inset-0 pointer-events-none select-none overflow-hidden" style="z-index: 0;" aria-hidden="true"></div>
+
+    <!-- Background Grids & Canvases -->
+    <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none" style="z-index: 1;"></canvas>
+    <div class="fixed inset-0 circuit-bg opacity-30 pointer-events-none" style="z-index: 0;"></div>
+    <div class="fixed inset-0 circuit-bg-glow pointer-events-none" style="z-index: 0;"></div>
+
+    <!-- Robot Mascots -->
+    <div id="mascot-swing-bot" class="fixed top-12 sm:top-16 -right-4 sm:right-4 md:right-8 lg:right-12 w-28 xs:w-36 sm:w-48 md:w-56 lg:w-64 max-w-[32vw] pointer-events-auto cursor-pointer select-none group" style="z-index: 3;" title="Click me!">
+      <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-[2px] h-20 bg-gradient-to-b from-transparent via-cyan-400 to-accent opacity-70 shadow-[0_0_10px_#00ffff] animate-pulse pointer-events-none"></div>
+      <div id="mascot-swing-bubble" class="hidden absolute -bottom-10 right-0 z-30 px-3 py-1.5 rounded-xl bg-darkNavy/95 border border-cyan-400/80 shadow-[0_0_20px_rgba(0,255,255,0.5)] text-[10px] font-orbitron font-bold text-accent whitespace-nowrap flex items-center space-x-1.5">
+        <i data-lucide="zap" class="w-3 h-3 text-cyan-300"></i>
+        <span>SWINGING INTO 30.NOV.2026!</span>
+      </div>
+      <div class="swing-idle relative w-full">
+        <img src="../assets/bot-swing.png" alt="Spider Bot" class="w-full h-auto object-contain filter drop-shadow-[0_0_20px_rgba(0,191,255,0.45)] group-hover:drop-shadow-[0_0_30px_rgba(0,255,255,0.8)] opacity-35 sm:opacity-50 group-hover:opacity-100 transition-all duration-300" loading="lazy" />
+      </div>
+    </div>
+
+    <div id="mascot-welcome-bot" class="fixed bottom-4 sm:bottom-8 -left-3 sm:left-4 md:left-8 lg:left-12 w-24 xs:w-32 sm:w-44 md:w-52 lg:w-60 max-w-[28vw] pointer-events-auto cursor-pointer select-none group perspective-1000" style="z-index: 3;" title="Click me!">
+      <div id="mascot-welcome-bubble" class="hidden absolute -top-12 left-0 z-30 px-3 py-1.5 rounded-xl bg-darkNavy/95 border border-primary/80 shadow-[0_0_20px_rgba(0,191,255,0.5)] text-[10px] font-orbitron font-bold text-white whitespace-nowrap flex items-center space-x-1.5">
+        <i data-lucide="bot" class="w-3 h-3 text-primary"></i>
+        <span>CIRCUITRON BOT: WELCOME!</span>
+      </div>
+      <div class="welcome-idle relative w-full preserve-3d">
+        <img src="../assets/bot-welcome.png" alt="Welcome Bot" class="w-full h-auto object-contain filter drop-shadow-[0_0_20px_rgba(0,191,255,0.4)] group-hover:drop-shadow-[0_0_30px_rgba(0,191,255,0.8)] opacity-35 sm:opacity-50 group-hover:opacity-100 transition-all duration-300" loading="lazy" />
+        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 sm:w-32 h-3 rounded-full border border-primary/40 border-dashed animate-spin-slow opacity-60 shadow-[0_0_8px_#00bfff]"></div>
+      </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 sm:py-5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center justify-between px-2.5 sm:px-6 py-2 sm:py-2.5 rounded-2xl bg-secondary/40 backdrop-blur-md border border-white/10 transition-all duration-300">
+          <a href="../index.html" class="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink">
+            <div class="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
+              <div class="relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden p-0.5 border border-primary/40 group-hover:border-accent transition-all duration-300 bg-darkNavy/80 flex items-center justify-center shadow-neon">
+                <img src="../logo.png" alt="Circuitron Logo" class="w-full h-full object-contain" />
+              </div>
+              <div class="hidden xs:flex relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden p-0.5 border border-primary/30 group-hover:border-accent transition-all duration-300 bg-darkNavy/80 items-center justify-center shadow-neon">
+                <img src="../assets/rvscet-logo.png" alt="RVSCET Logo" class="w-full h-full object-contain" />
+              </div>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center space-x-1">
+                <span class="font-orbitron font-extrabold text-xs xs:text-sm sm:text-lg gradient-text tracking-wide whitespace-nowrap">Circuitron</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse flex-shrink-0"></span>
+              </div>
+              <p class="text-[8px] xs:text-[9px] sm:text-[10px] text-gray-300 font-mono tracking-tight block whitespace-nowrap font-medium">RVSCET &bull; TECHXPO 2.O</p>
+            </div>
+          </a>
+
+          <div class="hidden lg:flex items-center space-x-1 bg-darkNavy/60 px-3 py-1.5 rounded-full border border-white/5">
+            <a href="../index.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Home</a>
+            <a href="about.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">About</a>
+            <a href="events.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Events</a>
+            <a href="team.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Team</a>
+            <a href="gallery.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Gallery</a>
+            <a href="schedule.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Schedule</a>
+            <a href="contact.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Contact</a>
+          </div>
+
+          <div class="hidden sm:flex items-center space-x-3">
+            <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-5 font-bold">
+              <span>Register</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <div class="lg:hidden flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
+            <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="sm:hidden inline-flex items-center justify-center text-[10px] xs:text-[11px] font-bold font-orbitron py-1 px-2.5 xs:px-3 rounded-full bg-gradient-to-r from-primary to-accent text-darkNavy shadow-neon flex-shrink-0">Register</a>
+            <button id="mobile-menu-btn" class="p-1.5 sm:p-2.5 min-w-[34px] min-h-[34px] sm:min-w-[40px] sm:min-h-[40px] flex items-center justify-center rounded-xl bg-darkNavy/80 border border-primary/20 text-gray-300 hover:text-white focus:outline-none flex-shrink-0" aria-label="Toggle menu">
+              <i id="menu-icon" data-lucide="menu" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+              <i id="close-icon" data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5 hidden"></i>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <div id="mobile-menu" class="hidden lg:hidden max-w-7xl mx-auto px-4 mt-2">
+        <div class="bg-darkNavy/95 backdrop-blur-xl p-4 sm:p-5 rounded-2xl border border-primary/30 space-y-2 shadow-2xl">
+          <a href="../index.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Home</a>
+          <a href="about.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">About</a>
+          <a href="events.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Events</a>
+          <a href="team.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Team</a>
+          <a href="gallery.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Gallery</a>
+          <a href="schedule.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Schedule</a>
+          <a href="contact.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 min-h-screen pt-28 pb-20">
+      <!-- Section Header -->
+      <section class="relative py-16 overflow-hidden">
+        <div class="absolute inset-0 circuit-bg opacity-30"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>MEDIA ARCHIVE</span>
+          </div>
+          <h1 class="text-4xl sm:text-6xl font-black font-orbitron gradient-text">Photo Gallery</h1>
+          <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+          <p class="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg">A visual retrospective of workshops, project demonstrations, and arena battles hosted by Circuitron at RVSCET.</p>
+        </div>
+      </section>
+
+      <!-- Category Filter Tabs -->
+      <section class="py-4 sm:py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center overflow-x-auto no-scrollbar gap-2 sm:gap-3 sm:justify-center py-2 px-1">
+            <button data-category="All" class="gallery-filter-btn px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 border whitespace-nowrap flex-shrink-0 bg-gradient-to-r from-primary to-accent text-darkNavy font-bold border-transparent shadow-neon">All</button>
+            <button data-category="Ceremony" class="gallery-filter-btn px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 border whitespace-nowrap flex-shrink-0 glass-card text-gray-300 hover:text-white border-primary/20 hover:border-primary/40">Ceremony</button>
+            <button data-category="Exhibition" class="gallery-filter-btn px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 border whitespace-nowrap flex-shrink-0 glass-card text-gray-300 hover:text-white border-primary/20 hover:border-primary/40">Exhibition</button>
+            <button data-category="Robotics" class="gallery-filter-btn px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 border whitespace-nowrap flex-shrink-0 glass-card text-gray-300 hover:text-white border-primary/20 hover:border-primary/40">Robotics</button>
+            <button data-category="Workshop" class="gallery-filter-btn px-4 sm:px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 border whitespace-nowrap flex-shrink-0 glass-card text-gray-300 hover:text-white border-primary/20 hover:border-primary/40">Workshop</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Grid -->
+      <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Fullscreen Lightbox Modal Carousel -->
+    <div id="gallery-lightbox" class="hidden fixed inset-0 bg-darkNavy/95 backdrop-blur-2xl z-50 flex items-center justify-center p-3 sm:p-8">
+      <div class="lightbox-backdrop absolute inset-0"></div>
+
+      <!-- Close Button -->
+      <button id="lightbox-close" class="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 sm:p-3 rounded-full bg-darkNavy/80 border border-primary/30 hover:bg-white/20 text-white transition-colors z-30 min-w-[38px] min-h-[38px] flex items-center justify-center shadow-lg" aria-label="Close">
+        <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+      </button>
+
+      <!-- Prev Button -->
+      <button id="lightbox-prev" class="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-darkNavy/80 border border-primary/30 hover:bg-white/20 text-white transition-colors z-30 min-w-[38px] min-h-[38px] flex items-center justify-center shadow-lg" aria-label="Previous">
+        <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+      </button>
+
+      <!-- Next Button -->
+      <button id="lightbox-next" class="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-darkNavy/80 border border-primary/30 hover:bg-white/20 text-white transition-colors z-30 min-w-[38px] min-h-[38px] flex items-center justify-center shadow-lg" aria-label="Next">
+        <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+      </button>
+
+      <!-- Active Content Container -->
+      <div class="relative max-w-5xl w-full flex flex-col items-center px-8 sm:px-12 z-20">
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[70vh] sm:max-h-[80vh] object-contain rounded-2xl border border-primary/40 shadow-2xl" />
+        <div class="mt-3 sm:mt-4 text-center">
+          <h3 id="lightbox-title" class="text-base sm:text-lg font-bold font-orbitron text-white"></h3>
+          <p id="lightbox-counter" class="text-xs text-accent font-mono mt-0.5 sm:mt-1"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-darkNavy/90 border-t border-primary/20 relative z-20 pt-16 pb-8 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+          <div class="lg:col-span-5 space-y-4">
+            <a href="../index.html" class="flex items-center space-x-3">
+              <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-xl p-0.5 bg-darkNavy border border-primary/40 shadow-neon flex items-center justify-center overflow-hidden">
+                  <img src="../logo.png" alt="Circuitron Logo" class="w-full h-full object-contain" />
+                </div>
+                <div class="w-12 h-12 rounded-xl p-1 bg-darkNavy border border-primary/30 shadow-neon flex items-center justify-center overflow-hidden">
+                  <img src="../assets/rvscet-logo.png" alt="RVSCET Logo" class="w-full h-full object-contain" />
+                </div>
+              </div>
+              <div>
+                <h3 class="font-orbitron font-extrabold text-xl gradient-text">Circuitron</h3>
+                <p class="text-xs text-gray-400 font-mono">IoT &amp; Embedded System Club</p>
+              </div>
+            </a>
+            <p class="text-gray-300 text-sm leading-relaxed max-w-sm">Empowering engineers and innovators through applied robotics, IoT research, and cutting-edge hardware design at RVSCET Jamshedpur.</p>
+          </div>
+
+          <div class="lg:col-span-3 space-y-4">
+            <h4 class="text-sm font-bold font-orbitron text-white uppercase tracking-wider">Navigation</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li><a href="../index.html" class="hover:text-primary transition-colors">Home</a></li>
+              <li><a href="about.html" class="hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="events.html" class="hover:text-primary transition-colors">All Events</a></li>
+              <li><a href="schedule.html" class="hover:text-primary transition-colors">Timeline Schedule</a></li>
+              <li><a href="team.html" class="hover:text-primary transition-colors">Core Committee</a></li>
+              <li><a href="gallery.html" class="hover:text-primary transition-colors">Photo Archive</a></li>
+              <li><a href="contact.html" class="hover:text-primary transition-colors">Support &amp; Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-4 space-y-4">
+            <h4 class="text-sm font-bold font-orbitron text-white uppercase tracking-wider">Secretariat Desk</h4>
+            <div class="space-y-2.5 text-sm text-gray-400">
+              <div class="flex items-start space-x-2.5">
+                <i data-lucide="map-pin" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                <span>RVS College of Engineering &amp; Technology, Edalbera, Bhilai Pahari, Jamshedpur - 831001</span>
+              </div>
+              <div class="flex items-center space-x-2.5">
+                <i data-lucide="mail" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                <a href="mailto:circuitron@rvscet.ac.in" class="hover:text-primary transition-colors text-white font-medium">circuitron@rvscet.ac.in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 space-y-4 sm:space-y-0">
+          <p>&copy; 2026 Circuitron, RVSCET. All rights reserved.</p>
+          <p class="flex items-center space-x-1">
+            <span>Engineered with passion for</span>
+            <span class="text-accent font-semibold">TechXpo 2.O</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FAB -->
+    <div id="scroll-top-fab" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 select-none opacity-0 translate-y-8 pointer-events-none transition-all duration-300">
+      <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="group relative flex items-center space-x-2 px-3.5 py-2.5 sm:px-5 sm:py-3.5 rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] text-darkNavy font-black font-orbitron text-[11px] sm:text-xs shadow-neonLg border border-white/20 transition-all duration-300 hover:scale-105">
+        <i data-lucide="rocket" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-y-0.5 transition-transform"></i>
+        <span>Register Now</span>
+        <i data-lucide="arrow-up-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
+      </a>
+    </div>
+
+    <script src="../js/lucide.min.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

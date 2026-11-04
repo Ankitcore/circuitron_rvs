@@ -5,18 +5,1003 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#050816" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Security & Integrity Headers (Anti-Tampering & XSS Shield) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
     <meta name="description" content="TechXpo 2.O - The Flagship Technical Symposium by Circuitron, IoT & Embedded System Club at RVSCET Jamshedpur." />
     <title>TechXpo 2.O | Circuitron RVSCET</title>
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="bg-secondary text-white font-poppins selection:bg-primary selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body class="bg-[#050816] text-white font-poppins selection:bg-accent selection:text-darkNavy relative min-h-screen overflow-x-hidden">
+    <!-- Top Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 h-[2.5px] z-[100] pointer-events-none bg-transparent">
+      <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-primary via-accent to-cyberPurple origin-left shadow-[0_0_12px_rgba(0,191,255,0.8)]" style="width: 0%;"></div>
+    </div>
+
+    <!-- Interactive Cursor Radar Spotlight -->
+    <div id="cyber-spotlight" class="fixed inset-0 pointer-events-none select-none overflow-hidden" style="z-index: 0;" aria-hidden="true"></div>
+
+    <!-- Animated Vector Circuit Grid Traces -->
+    <svg class="fixed inset-0 w-full h-full opacity-40 md:opacity-50 pointer-events-none" style="z-index: 0;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="cyanLaser" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00fffc" stop-opacity="0.8" />
+          <stop offset="50%" stop-color="#0091ff" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.1" />
+        </linearGradient>
+        <filter id="circuitGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <g stroke="rgba(0, 191, 255, 0.12)" stroke-width="1" fill="none">
+        <path d="M 0 120 L 220 120 L 320 220 L 680 220 L 740 280 L 1100 280" />
+        <path d="M 0 140 L 200 140 L 300 240 L 660 240" />
+        <path d="M 1920 180 L 1600 180 L 1480 300 L 1200 300 L 1140 360" />
+        <path d="M 1920 200 L 1620 200 L 1500 320 L 1250 320" />
+        <path d="M 80 800 L 300 800 L 420 680 L 850 680 L 920 750 L 1400 750" />
+        <path d="M 1920 850 L 1550 850 L 1450 750 L 1150 750" />
+      </g>
+      <g stroke="url(#cyanLaser)" stroke-width="1.8" fill="none" filter="url(#circuitGlow)">
+        <path class="laser-pulse-1" d="M 0 120 L 220 120 L 320 220 L 680 220 L 740 280 L 1100 280" stroke-dasharray="60 400" />
+        <path class="laser-pulse-2" d="M 1920 180 L 1600 180 L 1480 300 L 1200 300 L 1140 360" stroke-dasharray="50 350" />
+        <path class="laser-pulse-3" d="M 80 800 L 300 800 L 420 680 L 850 680 L 920 750 L 1400 750" stroke-dasharray="70 450" />
+      </g>
+      <g fill="#040716">
+        <circle cx="220" cy="120" r="4" stroke="#00ffff" stroke-width="1.5" /><circle cx="220" cy="120" r="1.5" fill="#00ffff" />
+        <circle cx="320" cy="220" r="4" stroke="#0091ff" stroke-width="1.5" /><circle cx="320" cy="220" r="1.5" fill="#00fffc" />
+        <circle cx="680" cy="220" r="4" stroke="#8b5cf6" stroke-width="1.5" /><circle cx="680" cy="220" r="1.5" fill="#8b5cf6" />
+        <circle cx="1600" cy="180" r="4" stroke="#00ffff" stroke-width="1.5" /><circle cx="1600" cy="180" r="1.5" fill="#00ffff" />
+        <circle cx="1480" cy="300" r="4" stroke="#8b5cf6" stroke-width="1.5" /><circle cx="1480" cy="300" r="1.5" fill="#8b5cf6" />
+        <circle cx="300" cy="800" r="4" stroke="#00ffff" stroke-width="1.5" /><circle cx="300" cy="800" r="1.5" fill="#00fffc" />
+      </g>
+    </svg>
+
+    <!-- Floating Telemetry Glyphs -->
+    <div class="fixed inset-0 pointer-events-none select-none" style="z-index: 0;" aria-hidden="true">
+      <div class="absolute top-1/3 left-10 text-[10px] font-mono text-cyan-400 tracking-widest hidden md:block opacity-30">[BUS::TX/RX_SYNC]</div>
+      <div class="absolute top-2/3 right-14 text-[10px] font-mono text-cyberPurple tracking-widest hidden md:block opacity-30">[MCU::STM32_ONLINE]</div>
+      <div class="absolute bottom-24 left-1/4 text-[9px] font-mono text-accent tracking-wider hidden lg:block opacity-25">[FREQ::2.4GHz_IoT_NODE]</div>
+    </div>
+
+    <!-- Particles Canvas -->
+    <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none" style="z-index: 1;"></canvas>
+
+    <!-- Background Circuit Grids -->
+    <div class="fixed inset-0 circuit-bg opacity-30 pointer-events-none" style="z-index: 0;"></div>
+    <div class="fixed inset-0 circuit-bg-glow pointer-events-none" style="z-index: 0;"></div>
+
+    <!-- Robot Mascot 1: Top-Right Swinging Spider Bot -->
+    <div id="mascot-swing-bot" class="fixed top-12 sm:top-16 -right-4 sm:right-4 md:right-8 lg:right-12 w-28 xs:w-36 sm:w-48 md:w-56 lg:w-64 max-w-[32vw] pointer-events-auto cursor-pointer select-none group" style="z-index: 3;" title="Click me!">
+      <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-[2px] h-20 bg-gradient-to-b from-transparent via-cyan-400 to-accent opacity-70 shadow-[0_0_10px_#00ffff] animate-pulse pointer-events-none"></div>
+      <div class="absolute top-1/4 left-1/4 w-32 h-32 sm:w-48 sm:h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none opacity-60"></div>
+      
+      <div id="mascot-swing-bubble" class="hidden absolute -bottom-10 right-0 z-30 px-3 py-1.5 rounded-xl bg-darkNavy/95 border border-cyan-400/80 shadow-[0_0_20px_rgba(0,255,255,0.5)] text-[10px] font-orbitron font-bold text-accent whitespace-nowrap flex items-center space-x-1.5">
+        <i data-lucide="zap" class="w-3 h-3 text-cyan-300"></i>
+        <span>SWINGING INTO 30.NOV.2026!</span>
+      </div>
+
+      <div class="swing-idle relative w-full">
+        <img src="assets/bot-swing.png" alt="Circuitron Spider Bot Mascot" class="w-full h-auto object-contain filter drop-shadow-[0_0_20px_rgba(0,191,255,0.45)] group-hover:drop-shadow-[0_0_30px_rgba(0,255,255,0.8)] opacity-35 sm:opacity-50 group-hover:opacity-100 transition-all duration-300" loading="lazy" />
+        <div class="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-primary/20 border border-primary/40 text-[8px] font-mono text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity">CLICK ME</div>
+      </div>
+    </div>
+
+    <!-- Robot Mascot 2: Bottom-Left Welcome Mascot Bot -->
+    <div id="mascot-welcome-bot" class="fixed bottom-4 sm:bottom-8 -left-3 sm:left-4 md:left-8 lg:left-12 w-24 xs:w-32 sm:w-44 md:w-52 lg:w-60 max-w-[28vw] pointer-events-auto cursor-pointer select-none group perspective-1000" style="z-index: 3;" title="Click me!">
+      <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-28 sm:w-44 h-8 bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent rounded-full blur-md animate-pulse pointer-events-none"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-28 h-28 sm:w-44 sm:h-44 bg-cyberPurple/25 rounded-full blur-3xl pointer-events-none opacity-50"></div>
+
+      <div id="mascot-welcome-bubble" class="hidden absolute -top-12 left-0 z-30 px-3 py-1.5 rounded-xl bg-darkNavy/95 border border-primary/80 shadow-[0_0_20px_rgba(0,191,255,0.5)] text-[10px] font-orbitron font-bold text-white whitespace-nowrap flex items-center space-x-1.5">
+        <i data-lucide="bot" class="w-3 h-3 text-primary"></i>
+        <span>CIRCUITRON BOT: WELCOME!</span>
+      </div>
+
+      <div class="welcome-idle relative w-full preserve-3d">
+        <img src="assets/bot-welcome.png" alt="Circuitron Welcome Mascot Robot" class="w-full h-auto object-contain filter drop-shadow-[0_0_20px_rgba(0,191,255,0.4)] group-hover:drop-shadow-[0_0_30px_rgba(0,191,255,0.8)] opacity-35 sm:opacity-50 group-hover:opacity-100 transition-all duration-300" loading="lazy" />
+        <div class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/40 text-[8px] font-mono text-accent opacity-0 group-hover:opacity-100 transition-opacity">NAMASTE::HELLO</div>
+        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 sm:w-32 h-3 rounded-full border border-primary/40 border-dashed animate-spin-slow opacity-60 shadow-[0_0_8px_#00bfff]"></div>
+      </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 sm:py-5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center justify-between px-2.5 sm:px-6 py-2 sm:py-2.5 rounded-2xl bg-secondary/40 backdrop-blur-md border border-white/10 transition-all duration-300">
+          <!-- Logo & Brand -->
+          <a href="index.html" class="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink">
+            <div class="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
+              <div class="relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden p-0.5 border border-primary/40 group-hover:border-accent transition-all duration-300 bg-darkNavy/80 flex items-center justify-center shadow-neon">
+                <img src="logo.png" alt="Circuitron Logo" class="w-full h-full object-contain" />
+              </div>
+              <div class="hidden xs:flex relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden p-0.5 border border-primary/30 group-hover:border-accent transition-all duration-300 bg-darkNavy/80 items-center justify-center shadow-neon">
+                <img src="assets/rvscet-logo.png" alt="RVSCET Logo" class="w-full h-full object-contain" />
+              </div>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center space-x-1">
+                <span class="font-orbitron font-extrabold text-xs xs:text-sm sm:text-lg gradient-text tracking-wide whitespace-nowrap">Circuitron</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse flex-shrink-0"></span>
+              </div>
+              <p class="text-[8px] xs:text-[9px] sm:text-[10px] text-gray-300 font-mono tracking-tight block whitespace-nowrap font-medium">RVSCET &bull; TECHXPO 2.O</p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Links -->
+          <div class="hidden lg:flex items-center space-x-1 bg-darkNavy/60 px-3 py-1.5 rounded-full border border-white/5">
+            <a href="index.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Home</a>
+            <a href="pages/about.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">About</a>
+            <a href="pages/events.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Events</a>
+            <a href="pages/team.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Team</a>
+            <a href="pages/gallery.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Gallery</a>
+            <a href="pages/schedule.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Schedule</a>
+            <a href="pages/contact.html" class="nav-link px-3.5 py-1.5 text-xs font-semibold rounded-full text-gray-300 hover:text-white transition-colors">Contact</a>
+          </div>
+
+          <!-- Right Action: Register Now -->
+          <div class="hidden sm:flex items-center space-x-3">
+            <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-5 font-bold">
+              <span>Register</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button & Compact Register -->
+          <div class="lg:hidden flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
+            <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="sm:hidden inline-flex items-center justify-center text-[10px] xs:text-[11px] font-bold font-orbitron py-1 px-2.5 xs:px-3 rounded-full bg-gradient-to-r from-primary to-accent text-darkNavy shadow-neon flex-shrink-0">Register</a>
+            <button id="mobile-menu-btn" class="p-1.5 sm:p-2.5 min-w-[34px] min-h-[34px] sm:min-w-[40px] sm:min-h-[40px] flex items-center justify-center rounded-xl bg-darkNavy/80 border border-primary/20 text-gray-300 hover:text-white focus:outline-none flex-shrink-0" aria-label="Toggle menu">
+              <i id="menu-icon" data-lucide="menu" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+              <i id="close-icon" data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5 hidden"></i>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden lg:hidden max-w-7xl mx-auto px-4 mt-2">
+        <div class="bg-darkNavy/95 backdrop-blur-xl p-4 sm:p-5 rounded-2xl border border-primary/30 space-y-2 shadow-2xl">
+          <a href="index.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Home</a>
+          <a href="pages/about.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">About</a>
+          <a href="pages/events.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Events</a>
+          <a href="pages/team.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Team</a>
+          <a href="pages/gallery.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Gallery</a>
+          <a href="pages/schedule.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Schedule</a>
+          <a href="pages/contact.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5">Contact</a>
+          <div class="pt-2">
+            <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="w-full btn-primary py-3 text-xs font-bold flex items-center justify-center space-x-1.5 min-h-[44px]">
+              <span>Register for TechXpo 2.O</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10">
+      <!-- 1. HERO SECTION -->
+      <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-24">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-primary/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-cyberPurple/15 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Column: Hero Copy -->
+            <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
+              <!-- Announcement Pill -->
+              <div class="inline-flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-full glass-panel border border-primary/30 text-[11px] sm:text-xs font-semibold text-accent shadow-neon max-w-full truncate">
+                <img src="assets/rvscet-logo.png" alt="RVSCET Logo" class="w-4 h-4 object-contain flex-shrink-0" />
+                <span class="truncate">Flagship Tech Symposium &bull; RVSCET Jamshedpur</span>
+              </div>
+
+              <!-- Giant Title -->
+              <div class="space-y-2">
+                <h1 class="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-black font-orbitron tracking-tight">
+                  <span class="gradient-text block">TechXpo 2.O</span>
+                  <span class="block text-2xl xs:text-3xl sm:text-5xl lg:text-6xl text-white mt-1 sm:mt-2">2026</span>
+                </h1>
+                <div class="inline-block">
+                  <p class="text-sm xs:text-base sm:text-xl lg:text-2xl font-bold font-orbitron tracking-wider text-accent uppercase">
+                    [ Think &bull; Inspire &bull; Innovate ]
+                  </p>
+                </div>
+              </div>
+
+              <!-- Subtitle -->
+              <p class="text-sm sm:text-base lg:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Organized by <strong class="text-primary font-bold">Circuitron</strong> &mdash; The Premier IoT and Embedded System Club of RVS College of Engineering &amp; Technology, Jamshedpur.
+              </p>
+
+              <!-- Key Details Pills -->
+              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-4 text-xs sm:text-sm text-gray-300">
+                <div class="flex items-center space-x-2 bg-darkNavy/80 px-3.5 py-2 rounded-xl border border-primary/20">
+                  <i data-lucide="calendar" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                  <span class="font-semibold text-white">30 November 2026</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-darkNavy/80 px-3.5 py-2 rounded-xl border border-primary/20">
+                  <img src="assets/rvscet-logo.png" alt="RVSCET" class="w-4 h-4 object-contain flex-shrink-0" />
+                  <span class="font-semibold text-white">RVSCET Campus, Jamshedpur</span>
+                </div>
+              </div>
+
+              <!-- Live Countdown Component -->
+              <div class="pt-2">
+                <div class="inline-flex flex-col items-center p-2.5 xs:p-3 sm:p-4 rounded-2xl glass-card border border-primary/30 max-w-full sm:max-w-xl mx-auto shadow-neon group">
+                  <div class="flex items-center space-x-1.5 sm:space-x-2 text-[10px] sm:text-xs font-orbitron font-semibold text-accent mb-2.5 sm:mb-3 tracking-wider">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 animate-spin-slow flex-shrink-0"></i>
+                    <span class="truncate">COUNTDOWN TO TECHXPO 2.O</span>
+                  </div>
+
+                  <div class="grid grid-cols-4 gap-1.5 xs:gap-2 sm:gap-4 w-full">
+                    <div class="flex flex-col items-center justify-center bg-darkNavy/70 px-2 py-1.5 xs:px-2.5 xs:py-2 sm:px-4 sm:py-3 rounded-xl border border-primary/20 min-w-[50px] xs:min-w-[58px] sm:min-w-[85px] transition-colors group-hover:border-primary/40">
+                      <span id="count-days" class="font-orbitron font-extrabold text-base xs:text-xl sm:text-3xl text-white tracking-wider">00</span>
+                      <span class="text-[8px] xs:text-[9px] sm:text-[10px] font-mono text-gray-400 mt-0.5 tracking-wider font-semibold">DAYS</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center bg-darkNavy/70 px-2 py-1.5 xs:px-2.5 xs:py-2 sm:px-4 sm:py-3 rounded-xl border border-primary/20 min-w-[50px] xs:min-w-[58px] sm:min-w-[85px] transition-colors group-hover:border-primary/40">
+                      <span id="count-hours" class="font-orbitron font-extrabold text-base xs:text-xl sm:text-3xl text-white tracking-wider">00</span>
+                      <span class="text-[8px] xs:text-[9px] sm:text-[10px] font-mono text-gray-400 mt-0.5 tracking-wider font-semibold">HOURS</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center bg-darkNavy/70 px-2 py-1.5 xs:px-2.5 xs:py-2 sm:px-4 sm:py-3 rounded-xl border border-primary/20 min-w-[50px] xs:min-w-[58px] sm:min-w-[85px] transition-colors group-hover:border-primary/40">
+                      <span id="count-mins" class="font-orbitron font-extrabold text-base xs:text-xl sm:text-3xl text-white tracking-wider">00</span>
+                      <span class="text-[8px] xs:text-[9px] sm:text-[10px] font-mono text-gray-400 mt-0.5 tracking-wider font-semibold">MINS</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-center bg-darkNavy/70 px-2 py-1.5 xs:px-2.5 xs:py-2 sm:px-4 sm:py-3 rounded-xl border border-primary/20 min-w-[50px] xs:min-w-[58px] sm:min-w-[85px] transition-colors group-hover:border-primary/40">
+                      <span id="count-secs" class="font-orbitron font-extrabold text-base xs:text-xl sm:text-3xl text-white tracking-wider">00</span>
+                      <span class="text-[8px] xs:text-[9px] sm:text-[10px] font-mono text-gray-400 mt-0.5 tracking-wider font-semibold">SECS</span>
+                    </div>
+                  </div>
+
+                  <!-- Timeline status bar -->
+                  <div class="w-full mt-3 pt-2.5 border-t border-white/5 space-y-1.5">
+                    <div class="flex items-center justify-between text-[8px] xs:text-[9px] font-mono text-gray-400">
+                      <span class="flex items-center space-x-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-ping"></span>
+                        <span class="text-gray-300">TIMELINE STATUS</span>
+                      </span>
+                      <span class="text-accent font-semibold flex items-center space-x-1">
+                        <i data-lucide="zap" class="w-2.5 h-2.5"></i>
+                        <span id="count-status-text">REGISTRATIONS LIVE</span>
+                      </span>
+                    </div>
+                    <div class="w-full h-1.5 bg-darkNavy/90 rounded-full overflow-hidden p-[1px] border border-primary/20">
+                      <div id="count-status-bar" class="h-full bg-gradient-to-r from-primary via-accent to-cyberPurple rounded-full relative" style="width: 72%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTA Buttons -->
+              <div class="pt-3 sm:pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+                <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto text-sm py-3 px-6">
+                  <span>Register for TechXpo 2.O</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1AInB0u15DomA8HFDeoEd3eXsWX3ppwJe/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="btn-secondary w-full sm:w-auto text-sm py-3 px-6">
+                  <i data-lucide="download" class="w-4 h-4"></i>
+                  <span>Event Brochure</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Column: Interactive 3D Model Rig -->
+            <div class="lg:col-span-5 flex flex-col items-center justify-center mt-4 lg:mt-0">
+              <div id="tech-model-rig" class="relative w-full max-w-[360px] sm:max-w-[420px] aspect-square mx-auto flex items-center justify-center perspective-1000 select-none touch-pan-y cursor-pointer">
+                <!-- Ambient glow -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 via-cyberPurple/20 to-accent/20 rounded-full blur-3xl opacity-60 animate-pulse-slow pointer-events-none"></div>
+
+                <div class="relative w-full h-full flex items-center justify-center transform scale-[0.8] xs:scale-[0.9] sm:scale-100 transition-transform">
+                  <div id="tech-model-transform" class="relative w-full h-full flex items-center justify-center preserve-3d">
+                    <!-- Outer Ring 1: Cyan Orbit -->
+                    <div class="absolute w-[300px] sm:w-[340px] h-[300px] sm:h-[340px] rounded-full border border-primary/40 border-dashed animate-spin-slow pointer-events-none" style="transform: rotateX(65deg) rotateY(15deg);">
+                      <div class="absolute -top-1.5 left-1/2 w-3 h-3 bg-primary rounded-full shadow-[0_0_12px_#00bfff]"></div>
+                    </div>
+
+                    <!-- Outer Ring 2: Purple Reverse Orbit -->
+                    <div class="absolute w-[260px] sm:w-[300px] h-[260px] sm:h-[300px] rounded-full border border-cyberPurple/40 border-t-2 border-t-cyberPurple animate-spin-reverse pointer-events-none" style="transform: rotateX(-55deg) rotateY(40deg);">
+                      <div class="absolute top-1/2 -right-1.5 w-3 h-3 bg-cyberPurple rounded-full shadow-[0_0_12px_#8b5cf6]"></div>
+                    </div>
+
+                    <!-- Middle Ring: Accent Cyan Ring -->
+                    <div class="absolute w-[210px] sm:w-[240px] h-[210px] sm:h-[240px] rounded-full border border-accent/40 animate-spin-slow pointer-events-none" style="transform: rotateX(40deg) rotateZ(30deg);"></div>
+
+                    <!-- Central Hexagonal Core Chassis -->
+                    <div class="relative z-10 w-44 h-44 sm:w-48 sm:h-48 rounded-2xl glass-panel p-4 flex flex-col items-center justify-center border-2 border-primary/50 shadow-neon" style="transform: translateZ(30px);">
+                      <div class="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-accent"></div>
+                      <div class="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-accent"></div>
+                      <div class="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-accent"></div>
+                      <div class="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-accent"></div>
+
+                      <div class="relative w-20 h-20 sm:w-24 sm:h-24 mb-2 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-primary/20 rounded-full blur-md animate-ping opacity-40"></div>
+                        <img src="logo.png" alt="Circuitron Core" class="w-18 h-18 sm:w-20 sm:h-20 object-contain drop-shadow-[0_0_15px_rgba(0,191,255,0.8)]" />
+                      </div>
+
+                      <div class="flex items-center space-x-1.5 text-[9px] sm:text-[10px] font-orbitron font-semibold text-primary uppercase tracking-wider">
+                        <i data-lucide="activity" class="w-3 h-3 text-accent animate-pulse"></i>
+                        <span>SYS::ONLINE</span>
+                      </div>
+                      <div class="text-[8px] sm:text-[9px] text-gray-400 font-mono tracking-tight mt-0.5">IoT &amp; EMBEDDED</div>
+                    </div>
+
+                    <!-- Floating Badges -->
+                    <div class="absolute -top-1 -right-2 sm:-top-2 sm:-right-4 glass-card px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-accent/30 text-xs flex items-center space-x-1.5 sm:space-x-2 shadow-lg" style="transform: translateZ(50px);">
+                      <i data-lucide="zap" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-accent animate-bounce"></i>
+                      <span class="font-orbitron font-bold text-white text-[10px] sm:text-[11px]">30.NOV.2026</span>
+                    </div>
+
+                    <div class="absolute -bottom-1 -left-2 sm:-bottom-2 sm:-left-4 glass-card px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-primary/30 text-xs flex items-center space-x-1.5 sm:space-x-2 shadow-lg" style="transform: translateZ(45px);">
+                      <img src="assets/rvscet-logo.png" alt="RVSCET" class="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain flex-shrink-0" />
+                      <span class="font-orbitron font-medium text-gray-200 text-[10px] sm:text-[11px]">RVSCET JAMSHEDPUR</span>
+                    </div>
+
+                    <div class="absolute -bottom-7 sm:-bottom-8 left-1/2 transform -translate-x-1/2 px-2.5 py-1 rounded-full bg-secondary/80 border border-primary/20 text-[9px] sm:text-[10px] text-gray-400 font-mono flex items-center space-x-1 whitespace-nowrap" style="transform: translateZ(20px);">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                      <span>INTERACTIVE 3D RIG</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Highlights Chips below 3D model -->
+              <div class="grid grid-cols-3 gap-2 sm:gap-3 w-full max-w-sm mt-6 sm:mt-8">
+                <div class="glass-card p-2.5 sm:p-3 rounded-xl text-center border border-primary/20 flex flex-col justify-between">
+                  <div>
+                    <i data-lucide="trophy" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400 mx-auto mb-1"></i>
+                    <div class="text-[11px] sm:text-xs font-bold text-white font-orbitron">₹100K+</div>
+                    <div class="text-[9px] sm:text-[10px] text-gray-400">Prize Pool</div>
+                  </div>
+                  <div class="w-full h-1 bg-darkNavy/80 rounded-full overflow-hidden mt-2 p-[0.5px] border border-yellow-400/20">
+                    <div class="h-full bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full w-full"></div>
+                  </div>
+                </div>
+
+                <div class="glass-card p-2.5 sm:p-3 rounded-xl text-center border border-primary/20 flex flex-col justify-between">
+                  <div>
+                    <i data-lucide="bot" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary mx-auto mb-1"></i>
+                    <div class="text-[11px] sm:text-xs font-bold text-white font-orbitron">3 Arenas</div>
+                    <div class="text-[9px] sm:text-[10px] text-gray-400">Combat &amp; Race</div>
+                  </div>
+                  <div class="w-full h-1 bg-darkNavy/80 rounded-full overflow-hidden mt-2 p-[0.5px] border border-primary/20">
+                    <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full w-full"></div>
+                  </div>
+                </div>
+
+                <div class="glass-card p-2.5 sm:p-3 rounded-xl text-center border border-primary/20 flex flex-col justify-between">
+                  <div>
+                    <i data-lucide="users" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent mx-auto mb-1"></i>
+                    <div class="text-[11px] sm:text-xs font-bold text-white font-orbitron">500+</div>
+                    <div class="text-[9px] sm:text-[10px] text-gray-400">Innovators</div>
+                  </div>
+                  <div class="w-full h-1 bg-darkNavy/80 rounded-full overflow-hidden mt-2 p-[0.5px] border border-accent/20">
+                    <div class="h-full bg-gradient-to-r from-accent to-cyberPurple rounded-full" style="width: 85%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. BENTO STATS & OVERVIEW SECTION -->
+      <section class="py-24 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <!-- Section Header -->
+          <div class="text-center space-y-4 mb-16">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>DISCOVER THE EXPERIENCE</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl font-black font-orbitron gradient-text">About TechXpo 2.O</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            <p class="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
+              TechXpo 2.0 is where innovation meets imagination and technology shapes tomorrow. More than just a tech festival, it's an immersive experience celebrating creativity, emerging technologies. Organized by <strong class="text-white font-bold">Circuitron &ndash; The IoT &amp; Embedded Systems Club of RVSCET</strong>, TechXpo 2.0 brings together passionate innovators, tech enthusiasts, and future engineers to explore ideas, showcase talent, build solutions, and push the boundaries of what's possible.
+            </p>
+          </div>
+
+          <!-- Bento Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Bento 1: Wide Card -->
+            <div class="md:col-span-2 glass-card p-8 rounded-2xl border border-primary/25 relative overflow-hidden group flex flex-col justify-between">
+              <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/20 transition-all duration-500"></div>
+              <div class="space-y-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
+                  <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-orbitron text-white">Next-Gen IoT &amp; Embedded Arena</h3>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                  From autonomous line-followers and heavy combat bots to cutting-edge smart hardware prototypes, TechXpo 2.O offers real-world arena challenges judged by distinguished academia and industry mentors.
+                </p>
+              </div>
+              <div class="pt-6 relative z-10">
+                <a href="pages/about.html" class="inline-flex items-center space-x-2 text-accent font-semibold text-sm hover:underline">
+                  <span>Read the Story of Circuitron</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Bento 2: Prize Pool -->
+            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-amber-500/30 flex flex-col justify-between relative overflow-hidden group">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                <i data-lucide="trophy" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <div class="text-3xl sm:text-4xl font-black font-orbitron text-amber-400">₹1,00,000+</div>
+                <h4 class="text-lg font-bold text-white mt-1">Prize Pool</h4>
+                <p class="text-gray-400 text-xs mt-1.5 leading-relaxed">Cash rewards, championship trophies, and certificates for arena winners.</p>
+                <div class="mt-4 pt-3 border-t border-amber-500/15 space-y-1.5">
+                  <div class="flex items-center justify-between text-[10px] font-mono text-amber-300/80">
+                    <span>Prize Pool Backing</span>
+                    <span class="font-bold text-amber-400">100% Unlocked</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-darkNavy/80 rounded-full overflow-hidden p-[1px] border border-amber-500/20">
+                    <div class="h-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-300 rounded-full w-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bento 3: Participants -->
+            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-primary/25 flex flex-col justify-between group">
+              <div class="w-12 h-12 rounded-xl bg-accent/20 border border-accent/40 flex items-center justify-center text-accent mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                <i data-lucide="users" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <div class="text-3xl sm:text-4xl font-black font-orbitron text-white">500+</div>
+                <h4 class="text-lg font-bold text-white mt-1">Innovators</h4>
+                <p class="text-gray-400 text-xs mt-1.5 leading-relaxed">Talented engineering students from colleges across Jharkhand, Bihar, and West Bengal.</p>
+                <div class="mt-4 pt-3 border-t border-primary/15 space-y-1.5">
+                  <div class="flex items-center justify-between text-[10px] font-mono text-accent/80">
+                    <span>Slot Intake</span>
+                    <span class="font-bold text-accent">85% Enrolled</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-darkNavy/80 rounded-full overflow-hidden p-[1px] border border-primary/20">
+                    <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full" style="width: 85%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bento 4: Challenges -->
+            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-cyberPurple/30 flex flex-col justify-between group">
+              <div class="w-12 h-12 rounded-xl bg-cyberPurple/20 border border-cyberPurple/40 flex items-center justify-center text-cyberPurple mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                <i data-lucide="target" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <div class="text-3xl sm:text-4xl font-black font-orbitron text-cyberPurple">20+</div>
+                <h4 class="text-lg font-bold text-white mt-1">Events &amp; Demos</h4>
+                <p class="text-gray-400 text-xs mt-1.5 leading-relaxed">Multi-category robotics, project stalls, technical exhibits, and workshops.</p>
+                <div class="mt-4 pt-3 border-t border-cyberPurple/15 space-y-1.5">
+                  <div class="flex items-center justify-between text-[10px] font-mono text-cyberPurple/90">
+                    <span>Arena Specs</span>
+                    <span class="font-bold text-cyberPurple">92% Ready</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-darkNavy/80 rounded-full overflow-hidden p-[1px] border border-cyberPurple/20">
+                    <div class="h-full bg-gradient-to-r from-cyberPurple via-primary to-accent rounded-full" style="width: 92%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bento 5: Wide Callout -->
+            <div class="md:col-span-2 lg:col-span-3 glass-card p-8 rounded-2xl border border-primary/25 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div class="space-y-2 text-center sm:text-left">
+                <div class="flex items-center justify-center sm:justify-start space-x-2 text-sm text-primary font-semibold">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                  <span>Mark Your Calendar</span>
+                </div>
+                <h4 class="text-xl sm:text-2xl font-bold font-orbitron text-white">Ready to compete with the finest minds in tech?</h4>
+                <p class="text-gray-300 text-sm max-w-xl">Registrations are currently open for Project Exhibition, Robo War, and Robo Race. Secure your slot now!</p>
+              </div>
+              <div class="flex-shrink-0">
+                <a href="pages/events.html" class="btn-primary">
+                  <span>Explore Events</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. FEATURED COMPETITIONS SECTION -->
+      <section class="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-primary/5 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center space-y-4 mb-16">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold text-accent">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>FLAGSHIP CHALLENGES</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl font-black font-orbitron gradient-text">Featured Competitions</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            <p class="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg">Battle your robots in high-stakes combat arenas, race autonomous bots against the clock, or display your breakthrough hardware prototypes.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Event 1: Project Exhibition -->
+            <div class="glass-card rounded-2xl p-7 border border-primary/20 flex flex-col justify-between group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full pointer-events-none group-hover:bg-primary/20 transition-all duration-300"></div>
+              <div class="space-y-5">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-darkNavy/80 border border-primary/30 flex items-center justify-center shadow-md">
+                    <i data-lucide="cpu" class="w-6 h-6 text-cyan-400"></i>
+                  </div>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold border bg-purple-500/15 text-purple-300 border-purple-500/30">Exhibition</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold font-orbitron text-white group-hover:text-primary transition-colors duration-200">Project Exhibition</h3>
+                  <p class="text-accent font-semibold text-sm mt-1">Showcase Innovation</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">Exhibit your innovative projects and prototypes. A platform to present your work to peers and judges.</p>
+                <div class="flex items-center space-x-2 text-xs text-gray-400 bg-darkNavy/60 px-3 py-2 rounded-lg border border-white/5">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                  <span>Req: Working project/prototype</span>
+                </div>
+                <div class="pt-2 space-y-1">
+                  <div class="flex items-center justify-between text-[10px] font-mono text-gray-400">
+                    <span>REGISTRATION SLOTS</span>
+                    <span class="text-accent font-semibold">80% Reserved</span>
+                  </div>
+                  <div class="w-full h-1 bg-darkNavy/80 rounded-full overflow-hidden p-[0.5px] border border-primary/20">
+                    <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full" style="width: 80%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-6 mt-6 border-t border-white/10 flex items-center space-x-3">
+                <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="flex-1">
+                  <button class="w-full btn-primary py-2.5 text-xs font-bold flex items-center justify-center space-x-1">
+                    <span>Register Now</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            <!-- Event 2: Robo War -->
+            <div class="glass-card rounded-2xl p-7 border border-primary/20 flex flex-col justify-between group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full pointer-events-none group-hover:bg-primary/20 transition-all duration-300"></div>
+              <div class="space-y-5">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-darkNavy/80 border border-primary/30 flex items-center justify-center shadow-md">
+                    <i data-lucide="bot" class="w-6 h-6 text-emerald-400"></i>
+                  </div>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold border bg-emerald-500/15 text-emerald-300 border-emerald-500/30">Robotics</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold font-orbitron text-white group-hover:text-primary transition-colors duration-200">Robo War</h3>
+                  <p class="text-accent font-semibold text-sm mt-1">Battle of the Bots</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">Robots compete head-to-head in arena battles. Bring your best combat bot and strategies.</p>
+                <div class="flex items-center space-x-2 text-xs text-gray-400 bg-darkNavy/60 px-3 py-2 rounded-lg border border-white/5">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                  <span>Req: Combat-ready robot</span>
+                </div>
+                <div class="pt-2 space-y-1">
+                  <div class="flex items-center justify-between text-[10px] font-mono text-gray-400">
+                    <span>REGISTRATION SLOTS</span>
+                    <span class="text-accent font-semibold">90% Reserved</span>
+                  </div>
+                  <div class="w-full h-1 bg-darkNavy/80 rounded-full overflow-hidden p-[0.5px] border border-primary/20">
+                    <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full" style="width: 90%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-6 mt-6 border-t border-white/10 flex items-center space-x-3">
+                <a href="https://forms.gle/EGqdueaPzzKsWuuBA" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="flex-1">
+                  <button class="w-full btn-primary py-2.5 text-xs font-bold flex items-center justify-center space-x-1">
+                    <span>Register Now</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            <!-- Event 3: Robo Race -->
+            <div class="glass-card rounded-2xl p-7 border border-primary/20 flex flex-col justify-between group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full pointer-events-none group-hover:bg-primary/20 transition-all duration-300"></div>
+              <div class="space-y-5">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-darkNavy/80 border border-primary/30 flex items-center justify-center shadow-md">
+                    <i data-lucide="zap" class="w-6 h-6 text-amber-400"></i>
+                  </div>
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold border bg-emerald-500/15 text-emerald-300 border-emerald-500/30">Robotics</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold font-orbitron text-white group-hover:text-primary transition-colors duration-200">Robo Race</h3>
+                  <p class="text-accent font-semibold text-sm mt-1">Race to Victory</p>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed">Autonomous robots navigate challenging tracks to finish fastest. Test your robotics and programming skills.</p>
+                <div class="flex items-center space-x-2 text-xs text-gray-400 bg-darkNavy/60 px-3 py-2 rounded-lg border border-white/5">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                  <span>Req: Robot kit, Programming skills</span>
+                </div>
+                <div class="pt-2 space-y-1">
+                  <div class="flex items-center justify-between text-[10px] font-mono text-gray-400">
+                    <span>REGISTRATION SLOTS</span>
+                    <span class="text-accent font-semibold">75% Reserved</span>
+                  </div>
+                  <div class="w-full h-1 bg-darkNavy/80 rounded-full overflow-hidden p-[0.5px] border border-primary/20">
+                    <div class="h-full bg-gradient-to-r from-primary to-accent rounded-full" style="width: 75%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-6 mt-6 border-t border-white/10 flex items-center space-x-3">
+                <a href="https://forms.gle/EGqdueaPzzKsWuuBA" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="flex-1">
+                  <button class="w-full btn-primary py-2.5 text-xs font-bold flex items-center justify-center space-x-1">
+                    <span>Register Now</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-16">
+            <a href="pages/events.html" class="inline-block btn-secondary">
+              <span>View All Events &amp; Rulebooks</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. EVENT HIGHLIGHTS & MEDIA (HOME GALLERY) -->
+      <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center space-y-4 mb-16">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>GLIMPSES OF GLORY</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl font-black font-orbitron gradient-text">Event Highlights &amp; Media</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            <p class="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg">Experience the electrifying atmosphere, fierce robotics clashes, and game-changing innovations from our previous chapters.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="group relative rounded-2xl overflow-hidden glass-panel border border-primary/20 aspect-video sm:aspect-[4/3] shadow-lg">
+              <img src="assets/gallery/IMG-20251024-WA0001.jpg" alt="Circuitron Flagship Arena" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-darkNavy via-darkNavy/40 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-5">
+                <span class="text-accent text-[11px] font-semibold tracking-wider uppercase mb-1">Robo Exhibition</span>
+                <h4 class="text-white font-bold text-base leading-snug group-hover:text-primary transition-colors">Circuitron Flagship Arena</h4>
+              </div>
+            </div>
+
+            <div class="group relative rounded-2xl overflow-hidden glass-panel border border-primary/20 aspect-video sm:aspect-[4/3] shadow-lg">
+              <img src="assets/gallery/IMG-20251024-WA0002.jpg" alt="Innovators &amp; Mentors" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-darkNavy via-darkNavy/40 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-5">
+                <span class="text-accent text-[11px] font-semibold tracking-wider uppercase mb-1">Symposium</span>
+                <h4 class="text-white font-bold text-base leading-snug group-hover:text-primary transition-colors">Innovators &amp; Mentors</h4>
+              </div>
+            </div>
+
+            <div class="group relative rounded-2xl overflow-hidden glass-panel border border-primary/20 aspect-video sm:aspect-[4/3] shadow-lg">
+              <img src="assets/gallery/IMG-20251024-WA0003.jpg" alt="Embedded Hardware Stalls" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-darkNavy via-darkNavy/40 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-5">
+                <span class="text-accent text-[11px] font-semibold tracking-wider uppercase mb-1">Showcase</span>
+                <h4 class="text-white font-bold text-base leading-snug group-hover:text-primary transition-colors">Embedded Hardware Stalls</h4>
+              </div>
+            </div>
+
+            <div class="group relative rounded-2xl overflow-hidden glass-panel border border-primary/20 aspect-video sm:aspect-[4/3] shadow-lg">
+              <img src="assets/gallery/IMG-20251024-WA0004.jpg" alt="Student Project Demos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-darkNavy via-darkNavy/40 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300 flex flex-col justify-end p-5">
+                <span class="text-accent text-[11px] font-semibold tracking-wider uppercase mb-1">Prototyping</span>
+                <h4 class="text-white font-bold text-base leading-snug group-hover:text-primary transition-colors">Student Project Demos</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-12">
+            <a href="pages/gallery.html" class="inline-block btn-secondary">
+              <span>Explore Complete Media Archive</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. MEET OUR LEADERSHIP (HOME TEAM) -->
+      <section class="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-cyberPurple/5 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center space-y-4 mb-16">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyberPurple/15 border border-cyberPurple/30 text-xs font-semibold text-cyberPurple">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>THE MINDS BEHIND THE SCENES</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl font-black font-orbitron gradient-text">Meet Our Leadership</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            <p class="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg">Guiding technology research and driving student excellence across RVSCET. Meet the mentors and student executives leading Circuitron.</p>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-6">
+            <!-- Faculty 1 -->
+            <div class="glass-card rounded-2xl p-6 border border-primary/20 flex flex-col items-center text-center group relative overflow-hidden justify-between w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-20px)] min-w-[220px]">
+              <div class="mb-5 px-3 py-1 rounded-full bg-darkNavy/80 border border-primary/20 text-[10px] font-semibold text-accent uppercase tracking-wider">Faculty Mentor</div>
+              <div class="relative w-32 h-32 mb-5">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-cyberPurple blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-300"></div>
+                <div class="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/40 group-hover:border-accent transition-colors duration-300 bg-secondary flex items-center justify-center">
+                  <img src="assets/gallery2/prof .shushant mahanty.jpg" alt="Prof. Dr. Sushanta Mahanty" data-name="Prof. Dr. Sushanta Mahanty" class="member-avatar-img w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                </div>
+              </div>
+              <div class="space-y-1 w-full">
+                <h3 class="font-orbitron font-bold text-base text-white group-hover:text-primary transition-colors line-clamp-1">Prof. Dr. Sushanta Mahanty</h3>
+                <p class="text-xs text-primary font-medium">Head PI</p>
+                <p class="text-[11px] text-gray-400 mt-2 line-clamp-2">Leading the technical vision and development of the club</p>
+              </div>
+            </div>
+
+            <!-- Faculty 2 -->
+            <div class="glass-card rounded-2xl p-6 border border-primary/20 flex flex-col items-center text-center group relative overflow-hidden justify-between w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-20px)] min-w-[220px]">
+              <div class="mb-5 px-3 py-1 rounded-full bg-darkNavy/80 border border-primary/20 text-[10px] font-semibold text-accent uppercase tracking-wider">Faculty Co-PI</div>
+              <div class="relative w-32 h-32 mb-5">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-cyberPurple blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-300"></div>
+                <div class="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/40 group-hover:border-accent transition-colors duration-300 bg-secondary flex items-center justify-center">
+                  <img src="assets/gallery2/prof vikash kumar.jpg" alt="Prof. Dr. Vikash Kumar" data-name="Prof. Dr. Vikash Kumar" class="member-avatar-img w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                </div>
+              </div>
+              <div class="space-y-1 w-full">
+                <h3 class="font-orbitron font-bold text-base text-white group-hover:text-primary transition-colors line-clamp-1">Prof. Dr. Vikash Kumar</h3>
+                <p class="text-xs text-primary font-medium">Co-PI</p>
+                <p class="text-[11px] text-gray-400 mt-2 line-clamp-2">Guiding research and innovation initiatives</p>
+              </div>
+            </div>
+
+            <!-- Exec 1: President -->
+            <div class="glass-card rounded-2xl p-6 border border-primary/20 flex flex-col items-center text-center group relative overflow-hidden justify-between w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-20px)] min-w-[220px]">
+              <div class="mb-5 px-3 py-1 rounded-full bg-darkNavy/80 border border-primary/20 text-[10px] font-semibold text-accent uppercase tracking-wider">Executive President</div>
+              <div class="relative w-32 h-32 mb-5">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-cyberPurple blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-300"></div>
+                <div class="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/40 group-hover:border-accent transition-colors duration-300 bg-secondary flex items-center justify-center">
+                  <div class="w-full h-full bg-gradient-to-tr from-darkNavy via-primary/20 to-accent/20 flex flex-col items-center justify-center text-center p-3">
+                    <span class="font-orbitron font-extrabold text-2xl text-accent tracking-wider">UK</span>
+                    <span class="text-[10px] text-gray-400 font-mono mt-1 line-clamp-1 max-w-[100px]">Umang</span>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-1 w-full">
+                <h3 class="font-orbitron font-bold text-base text-white group-hover:text-primary transition-colors line-clamp-1">Umang Kumar Sharma</h3>
+                <p class="text-xs text-primary font-medium">President</p>
+                <p class="text-[11px] text-gray-400 mt-2 line-clamp-2">Inspiring leadership, driving innovation, and shaping the club’s future.</p>
+              </div>
+            </div>
+
+            <!-- Exec 2: PR Head -->
+            <div class="glass-card rounded-2xl p-6 border border-primary/20 flex flex-col items-center text-center group relative overflow-hidden justify-between w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-20px)] min-w-[220px]">
+              <div class="mb-5 px-3 py-1 rounded-full bg-darkNavy/80 border border-primary/20 text-[10px] font-semibold text-accent uppercase tracking-wider">PR &amp; Communications</div>
+              <div class="relative w-32 h-32 mb-5">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-cyberPurple blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-300"></div>
+                <div class="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/40 group-hover:border-accent transition-colors duration-300 bg-secondary flex items-center justify-center">
+                  <div class="w-full h-full bg-gradient-to-tr from-darkNavy via-primary/20 to-accent/20 flex flex-col items-center justify-center text-center p-3">
+                    <span class="font-orbitron font-extrabold text-2xl text-accent tracking-wider">AA</span>
+                    <span class="text-[10px] text-gray-400 font-mono mt-1 line-clamp-1 max-w-[100px]">Akshat</span>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-1 w-full">
+                <h3 class="font-orbitron font-bold text-base text-white group-hover:text-primary transition-colors line-clamp-1">Akshat Anand</h3>
+                <p class="text-xs text-primary font-medium">PR &amp; Communication Head</p>
+                <p class="text-[11px] text-gray-400 mt-2 line-clamp-2">Building connections, strengthening communication, and creating a lasting impact.</p>
+              </div>
+            </div>
+
+            <!-- Exec 3: Technical Head -->
+            <div class="glass-card rounded-2xl p-6 border border-primary/20 flex flex-col items-center text-center group relative overflow-hidden justify-between w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(20%-20px)] min-w-[220px]">
+              <div class="mb-5 px-3 py-1 rounded-full bg-darkNavy/80 border border-primary/20 text-[10px] font-semibold text-accent uppercase tracking-wider">Technical Leadership</div>
+              <div class="relative w-32 h-32 mb-5">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-cyberPurple blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-300"></div>
+                <div class="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/40 group-hover:border-accent transition-colors duration-300 bg-secondary flex items-center justify-center">
+                  <div class="w-full h-full bg-gradient-to-tr from-darkNavy via-primary/20 to-accent/20 flex flex-col items-center justify-center text-center p-3">
+                    <span class="font-orbitron font-extrabold text-2xl text-accent tracking-wider">SP</span>
+                    <span class="text-[10px] text-gray-400 font-mono mt-1 line-clamp-1 max-w-[100px]">Subha</span>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-1 w-full">
+                <h3 class="font-orbitron font-bold text-base text-white group-hover:text-primary transition-colors line-clamp-1">Subha Pain</h3>
+                <p class="text-xs text-primary font-medium">Technical Head</p>
+                <p class="text-[11px] text-gray-400 mt-2 line-clamp-2">Inspiring leadership, driving innovation, and shaping the club’s future.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-12">
+            <a href="pages/team.html" class="inline-block btn-secondary">
+              <span>View Complete Committee Roster</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CONNECT WITH US (HOME CONTACT) -->
+      <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-5 space-y-8">
+              <div class="space-y-4">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                  <span>COMMUNICATION CHANNEL</span>
+                </div>
+                <h2 class="text-4xl sm:text-5xl font-black font-orbitron gradient-text">Connect With Us</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></div>
+                <p class="text-gray-300 leading-relaxed text-base sm:text-lg">
+                  Have questions regarding event rulebooks, team registrations, travel guidance, or campus accommodation? Drop us a line and our organizing team will assist promptly.
+                </p>
+              </div>
+
+              <div class="space-y-4">
+                <div class="glass-card p-5 rounded-xl border border-primary/20 flex items-start space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary flex-shrink-0">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-white font-bold font-orbitron text-sm">Official Inquiries</h4>
+                    <a href="mailto:circuitron@rvscet.ac.in" class="text-primary hover:text-accent transition-colors text-sm font-semibold">circuitron@rvscet.ac.in</a>
+                    <p class="text-gray-400 text-xs mt-0.5">Response within 24 hours</p>
+                  </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-primary/20 flex items-start space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center text-accent flex-shrink-0">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-white font-bold font-orbitron text-sm">Venue Location</h4>
+                    <p class="text-gray-300 text-sm">RVS College of Engineering &amp; Technology</p>
+                    <p class="text-gray-400 text-xs mt-0.5">Edalbera, PO- Bhilai Pahari, Jamshedpur - 831001</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Column -->
+            <div class="lg:col-span-7 glass-panel p-8 sm:p-10 rounded-3xl border border-primary/30 shadow-2xl relative">
+              <h3 class="text-2xl font-bold font-orbitron text-white mb-2">Send a Direct Message</h3>
+              <p class="text-gray-400 text-sm mb-6">Fill out the query form below and we'll connect with you shortly.</p>
+
+              <div class="contact-success-box hidden p-6 sm:p-8 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-3">
+                <i data-lucide="check-circle-2" class="w-10 h-10 sm:w-12 sm:h-12 text-emerald-400 mx-auto"></i>
+                <h4 class="text-lg sm:text-xl font-bold font-orbitron text-white">Message Transmitted!</h4>
+                <p class="text-gray-300 text-xs sm:text-sm">Thank you for contacting Circuitron. A coordinator will reply via email shortly.</p>
+              </div>
+
+              <form class="contact-form space-y-4">
+                <!-- Security Honeypot: Anti-Bot Spam Shield -->
+                <div style="display:none !important;" aria-hidden="true">
+                  <input type="text" name="_security_trap" tabindex="-1" autocomplete="off" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Full Name</label>
+                  <input type="text" name="name" required placeholder="Your full name" class="w-full px-4 py-3 bg-darkNavy/80 border border-primary/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Email Address</label>
+                  <input type="email" name="email" required placeholder="you@domain.com" class="w-full px-4 py-3 bg-darkNavy/80 border border-primary/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Message / Inquiry</label>
+                  <textarea name="message" required rows="3" placeholder="Describe your question or requirements..." class="w-full px-4 py-3 bg-darkNavy/80 border border-primary/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent text-sm resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full btn-primary py-3 text-sm font-bold flex items-center justify-center space-x-1.5">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span>Transmit Inquiries</span>
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-darkNavy/90 border-t border-primary/20 relative z-20 pt-16 pb-8 overflow-hidden">
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-primary/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+          <!-- Brand Info -->
+          <div class="lg:col-span-5 space-y-4">
+            <a href="index.html" class="flex items-center space-x-3">
+              <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-xl p-0.5 bg-darkNavy border border-primary/40 shadow-neon flex items-center justify-center overflow-hidden">
+                  <img src="logo.png" alt="Circuitron Logo" class="w-full h-full object-contain" />
+                </div>
+                <div class="w-12 h-12 rounded-xl p-1 bg-darkNavy border border-primary/30 shadow-neon flex items-center justify-center overflow-hidden">
+                  <img src="assets/rvscet-logo.png" alt="RVSCET Logo" class="w-full h-full object-contain" />
+                </div>
+              </div>
+              <div>
+                <h3 class="font-orbitron font-extrabold text-xl gradient-text">Circuitron</h3>
+                <p class="text-xs text-gray-400 font-mono">IoT &amp; Embedded System Club</p>
+              </div>
+            </a>
+            <p class="text-gray-300 text-sm leading-relaxed max-w-sm">Empowering engineers and innovators through applied robotics, IoT research, and cutting-edge hardware design at RVSCET Jamshedpur.</p>
+
+            <div class="flex items-center space-x-3 pt-2">
+              <a href="https://www.instagram.com/circuitron.rvscet?igsh=MTlodTUweno3YjN5bQ==" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-xl bg-darkNavy border border-primary/40 flex items-center justify-center text-accent hover:text-white hover:bg-primary/20 hover:border-accent hover:shadow-neon transition-all duration-200">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0-.795-.646-1.44-1.44-1.44-.795 0-1.44.646-1.44 1.44 0 .794.646 1.439 1.44 1.439.793-.001 1.44-.645 1.44-1.439z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/school/rvs-college-of-engineering-&-technology/" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 rounded-xl bg-darkNavy border border-primary/40 flex items-center justify-center text-accent hover:text-white hover:bg-primary/20 hover:border-accent hover:shadow-neon transition-all duration-200">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="https://www.youtube.com/@RVSCETJamshedpurOfficial" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-darkNavy border border-primary/40 flex items-center justify-center text-accent hover:text-white hover:bg-primary/20 hover:border-accent hover:shadow-neon transition-all duration-200">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="lg:col-span-3 space-y-4">
+            <h4 class="text-sm font-bold font-orbitron text-white uppercase tracking-wider">Navigation</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li><a href="index.html" class="hover:text-primary transition-colors">Home</a></li>
+              <li><a href="pages/about.html" class="hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="pages/events.html" class="hover:text-primary transition-colors">All Events</a></li>
+              <li><a href="pages/schedule.html" class="hover:text-primary transition-colors">Timeline Schedule</a></li>
+              <li><a href="pages/team.html" class="hover:text-primary transition-colors">Core Committee</a></li>
+              <li><a href="pages/gallery.html" class="hover:text-primary transition-colors">Photo Archive</a></li>
+              <li><a href="pages/contact.html" class="hover:text-primary transition-colors">Support &amp; Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact & Secretariat -->
+          <div class="lg:col-span-4 space-y-4">
+            <h4 class="text-sm font-bold font-orbitron text-white uppercase tracking-wider">Secretariat Desk</h4>
+            <div class="space-y-2.5 text-sm text-gray-400">
+              <div class="flex items-start space-x-2.5">
+                <i data-lucide="map-pin" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                <span>RVS College of Engineering &amp; Technology, Edalbera, Bhilai Pahari, Jamshedpur - 831001</span>
+              </div>
+              <div class="flex items-center space-x-2.5">
+                <i data-lucide="mail" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                <a href="mailto:circuitron@rvscet.ac.in" class="hover:text-primary transition-colors text-white font-medium">circuitron@rvscet.ac.in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 space-y-4 sm:space-y-0">
+          <p>&copy; 2026 Circuitron, RVSCET. All rights reserved.</p>
+          <p class="flex items-center space-x-1">
+            <span>Engineered with passion for</span>
+            <span class="text-accent font-semibold">TechXpo 2.O</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Action Button (Scroll to Top & Register) -->
+    <div id="scroll-top-fab" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 select-none opacity-0 translate-y-8 pointer-events-none transition-all duration-300">
+      <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="group relative flex items-center space-x-2 px-3.5 py-2.5 sm:px-5 sm:py-3.5 rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] text-darkNavy font-black font-orbitron text-[11px] sm:text-xs shadow-neonLg border border-white/20 transition-all duration-300 hover:scale-105">
+        <i data-lucide="rocket" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-y-0.5 transition-transform"></i>
+        <span>Register Now</span>
+        <i data-lucide="arrow-up-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
+      </a>
+    </div>
+
+    <!-- Script dependencies -->
+    <script src="js/lucide.min.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
