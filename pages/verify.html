@@ -4,31 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#050816" />
-    <meta name="description" content="Official Executive & Committee Member Verification Portal for TechXpo 2.O — Circuitron Club, RVSCET Jamshedpur." />
-    <title>Official Credential Verification | TechXpo 2.O &bull; Circuitron RVSCET</title>
+    <meta name="description" content="Official Executive Member Authentication & Credential Verification Portal for TechXpo 2.O — Circuitron Club, RVSCET Jamshedpur." />
+    <title>Executive Member Authentication | TechXpo 2.O &bull; Circuitron RVSCET</title>
     <link rel="icon" type="image/svg+xml" href="../logo.svg" />
     <link rel="icon" type="image/png" href="../favicon.png" />
     <link rel="shortcut icon" href="../favicon.ico" />
     <link rel="apple-touch-icon" href="../logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../css/style.css" />
     <style>
       .laser-scan-line {
         position: absolute;
         left: 0;
         right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #00ffff, #00bfff, transparent);
-        box-shadow: 0 0 15px #00ffff, 0 0 30px #00bfff;
-        animation: laserSweep 3s ease-in-out infinite alternate;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #00ffff, #10b981, #00ffff, transparent);
+        box-shadow: 0 0 15px #10b981, 0 0 30px #00ffff;
+        animation: laserSweep 2.5s ease-in-out infinite alternate;
         pointer-events: none;
       }
       @keyframes laserSweep {
-        0% { top: 4%; opacity: 0.2; }
-        50% { opacity: 0.9; }
-        100% { top: 96%; opacity: 0.2; }
+        0% { top: 2%; opacity: 0.3; }
+        50% { opacity: 1; }
+        100% { top: 98%; opacity: 0.3; }
       }
       .hologram-card {
         position: relative;
@@ -37,31 +37,39 @@
       .hologram-card::after {
         content: '';
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
+        top: -60%;
+        left: -60%;
+        width: 220%;
+        height: 220%;
         background: linear-gradient(
           60deg,
           transparent 30%,
-          rgba(0, 255, 255, 0.08) 45%,
-          rgba(139, 92, 246, 0.08) 55%,
+          rgba(0, 255, 255, 0.09) 45%,
+          rgba(16, 185, 129, 0.09) 50%,
+          rgba(139, 92, 246, 0.09) 55%,
           transparent 70%
         );
         transform: rotate(25deg);
         pointer-events: none;
-        animation: hologramShine 6s linear infinite;
+        animation: hologramShine 5s linear infinite;
       }
       @keyframes hologramShine {
-        0% { transform: translateY(-30%) rotate(25deg); }
-        100% { transform: translateY(30%) rotate(25deg); }
+        0% { transform: translateY(-40%) rotate(25deg); }
+        100% { transform: translateY(40%) rotate(25deg); }
+      }
+      .auth-pulse-ring {
+        animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes pulseRing {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+        50% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
       }
     </style>
   </head>
   <body class="bg-[#050816] text-white font-poppins selection:bg-accent selection:text-darkNavy relative min-h-screen overflow-x-hidden">
     <!-- Top Progress Bar -->
-    <div class="fixed top-0 left-0 right-0 h-[2.5px] z-[100] pointer-events-none bg-transparent">
-      <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-primary via-accent to-emerald-400 origin-left shadow-[0_0_12px_rgba(0,191,255,0.8)]" style="width: 100%;"></div>
+    <div class="fixed top-0 left-0 right-0 h-[3px] z-[100] pointer-events-none bg-transparent">
+      <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-emerald-400 via-accent to-primary origin-left shadow-[0_0_15px_rgba(16,185,129,0.9)]" style="width: 100%;"></div>
     </div>
 
     <!-- Spotlight Follower & Canvas Background -->
@@ -71,9 +79,9 @@
     <div class="fixed inset-0 circuit-bg-glow pointer-events-none" style="z-index: 0;"></div>
 
     <!-- Navigation Header -->
-    <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 sm:py-5">
+    <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex items-center justify-between px-2.5 sm:px-6 py-2 sm:py-2.5 rounded-2xl bg-secondary/60 backdrop-blur-md border border-white/10 transition-all duration-300">
+        <nav class="flex items-center justify-between px-3 sm:px-6 py-2 sm:py-2.5 rounded-2xl bg-secondary/80 backdrop-blur-md border border-white/10 transition-all duration-300 shadow-2xl">
           <a href="../index.html" class="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink">
             <div class="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
               <div class="relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden p-0.5 border border-primary/40 group-hover:border-accent transition-all duration-300 bg-darkNavy/80 flex items-center justify-center shadow-neon">
@@ -86,9 +94,9 @@
             <div class="min-w-0">
               <div class="flex items-center space-x-1">
                 <span class="font-orbitron font-extrabold text-xs xs:text-sm sm:text-lg gradient-text tracking-wide whitespace-nowrap">Circuitron</span>
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
               </div>
-              <p class="text-[8px] xs:text-[9px] sm:text-[10px] text-gray-300 font-mono tracking-tight block whitespace-nowrap font-medium">VERIFICATION PORTAL &bull; TECHXPO 2.O</p>
+              <p class="text-[8px] xs:text-[9px] sm:text-[10px] text-emerald-400 font-mono tracking-tight block whitespace-nowrap font-bold">OFFICIAL EXECUTIVE AUTHENTICATION &bull; TECHXPO 2.O</p>
             </div>
           </a>
 
@@ -105,7 +113,7 @@
           <div class="flex items-center space-x-2 sm:space-x-3">
             <a href="team.html" class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-xs font-semibold text-primary hover:border-accent hover:text-white transition-all">
               <i data-lucide="users" class="w-3.5 h-3.5"></i>
-              <span>All Members</span>
+              <span>Full Team Roster</span>
             </a>
             <a href="https://forms.gle/mNU3damnJBMfnmSU7" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-1.5 px-4 font-bold">
               <span>Register</span>
@@ -117,64 +125,64 @@
     </header>
 
     <!-- Main Content -->
-    <main class="relative z-10 min-h-screen pt-28 pb-20">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main class="relative z-10 min-h-screen pt-24 sm:pt-28 pb-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Live Scan Banner / Status Notice -->
-        <div class="mb-8 text-center space-y-3">
-          <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 text-xs font-mono font-semibold tracking-wide shadow-[0_0_20px_rgba(16,185,129,0.3)] animate-pulse">
-            <i data-lucide="shield-check" class="w-4 h-4"></i>
-            <span>OFFICIAL CREDENTIAL VERIFICATION SYSTEM</span>
+        <!-- Live Authentication Banner -->
+        <div class="mb-6 text-center space-y-2">
+          <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-400 text-xs font-mono font-bold tracking-wide shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+            <span>AUTHENTICATION PROTOCOL: PASSED</span>
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           </div>
-          <h1 class="text-3xl sm:text-5xl font-black font-orbitron text-white">
-            Executive <span class="gradient-text">Verification</span>
+          <h1 class="text-2xl sm:text-4xl font-black font-orbitron text-white">
+            Official Executive <span class="gradient-text">Authentication</span>
           </h1>
-          <p class="text-gray-300 text-xs sm:text-sm max-w-xl mx-auto font-mono">
-            RVS College of Engineering & Technology &bull; Circuitron IoT & Robotics Club &bull; TechXpo 2.O
+          <p class="text-gray-300 text-xs sm:text-sm font-mono max-w-xl mx-auto">
+            Circuitron IoT &amp; Robotics Club &bull; RVS College of Engineering &amp; Technology (RVSCET)
           </p>
         </div>
 
-        <!-- Dynamic Container (Populated via JS) -->
+        <!-- Dynamic Member Authentication Card -->
         <div id="verification-result-container">
-          <!-- Rendered dynamically -->
+          <!-- Rendered via JS -->
         </div>
 
-        <!-- Universal Member Lookup Section -->
-        <div class="mt-12 glass-panel p-6 sm:p-8 rounded-3xl border border-primary/30 max-w-3xl mx-auto">
-          <div class="flex items-center space-x-3 mb-4">
+        <!-- Lookup Another Member -->
+        <div class="mt-10 glass-panel p-5 sm:p-7 rounded-3xl border border-primary/30 max-w-2xl mx-auto">
+          <div class="flex items-center space-x-3 mb-3">
             <div class="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
               <i data-lucide="search" class="w-4 h-4"></i>
             </div>
             <div>
-              <h3 class="text-lg font-bold font-orbitron text-white">Verify Another Member ID</h3>
-              <p class="text-xs text-gray-400">Search credentials for Executive Committee, Faculty Heads, or Core Coordinators</p>
+              <h3 class="text-base font-bold font-orbitron text-white">Authenticate Another Member ID</h3>
+              <p class="text-xs text-gray-400">Search credentials for Executive Committee or Core Coordinators</p>
             </div>
           </div>
 
-          <form id="verify-form" class="flex flex-col sm:flex-row gap-3">
+          <form id="verify-form" class="flex flex-col sm:flex-row gap-2.5">
             <div class="relative flex-1">
               <i data-lucide="id-card" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
               <input
                 id="search-id-input"
                 type="text"
-                placeholder="e.g. TX2-EX-003, TX2-EX-001, TX2-CR-001"
-                class="w-full pl-10 pr-4 py-3 rounded-xl bg-darkNavy/90 border border-primary/30 text-white placeholder-gray-500 font-mono text-sm focus:outline-none focus:border-accent shadow-inner uppercase tracking-wider"
+                placeholder="e.g. TX2-EX-003, TX2-EX-001, TX2-EX-002"
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-darkNavy/90 border border-primary/30 text-white placeholder-gray-500 font-mono text-sm focus:outline-none focus:border-accent shadow-inner uppercase tracking-wider"
               />
             </div>
             <button
               type="submit"
-              class="btn-primary px-6 py-3 text-xs sm:text-sm font-bold flex items-center justify-center space-x-2"
+              class="btn-primary px-5 py-2.5 text-xs sm:text-sm font-bold flex items-center justify-center space-x-2"
             >
               <i data-lucide="shield-check" class="w-4 h-4"></i>
-              <span>Verify Credential</span>
+              <span>Authenticate</span>
             </button>
           </form>
 
           <!-- Quick Test Pills -->
-          <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
-            <span class="text-gray-400 font-mono text-[11px]">Quick Lookups:</span>
-            <button type="button" onclick="loadMember('TX2-EX-003')" class="px-2.5 py-1 rounded-lg bg-primary/10 border border-primary/30 text-accent hover:bg-primary/20 transition-all font-mono text-[11px]">
+          <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+            <span class="text-gray-400 font-mono text-[11px]">Quick Access:</span>
+            <button type="button" onclick="loadMember('TX2-EX-003')" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/25 transition-all font-mono text-[11px] font-bold">
               Subha Pain (TX2-EX-003)
             </button>
             <button type="button" onclick="loadMember('TX2-EX-001')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all font-mono text-[11px]">
@@ -183,28 +191,25 @@
             <button type="button" onclick="loadMember('TX2-EX-002')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all font-mono text-[11px]">
               Akshat Anand (TX2-EX-002)
             </button>
-            <button type="button" onclick="loadMember('TX2-FC-001')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-all font-mono text-[11px]">
-              Prof. Sushanta Mahanty (TX2-FC-001)
-            </button>
           </div>
         </div>
 
-        <!-- Security & Legal Notice -->
-        <div class="mt-10 text-center max-w-2xl mx-auto space-y-2 text-gray-400 text-xs leading-relaxed">
-          <div class="flex items-center justify-center space-x-2 text-gray-300">
-            <i data-lucide="lock" class="w-3.5 h-3.5 text-accent"></i>
-            <span class="font-mono font-semibold">Cryptographically Signed &amp; Digitally Verified</span>
-          </div>
-          <p>This verification portal is maintained exclusively by the Circuitron Club and the Department of Electronics &amp; Communication / Electrical Engineering, RVSCET Jamshedpur. Unauthorized tampering or forgery of credentials is strictly prohibited.</p>
+        <!-- Security Seal Footer Note -->
+        <div class="mt-8 text-center text-gray-400 text-[11px] font-mono leading-relaxed max-w-lg mx-auto">
+          <p class="flex items-center justify-center space-x-1.5 text-emerald-400 font-semibold mb-1">
+            <i data-lucide="check-check" class="w-3.5 h-3.5"></i>
+            <span>Google Scanner &amp; Lens Verified Web Destination</span>
+          </p>
+          <p>This verification confirms active executive accreditation for TechXpo 2.O at RVS College of Engineering &amp; Technology, Jamshedpur.</p>
         </div>
 
       </div>
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-primary/20 bg-darkNavy/90 pt-8 pb-8 text-center text-xs text-gray-400">
-      <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p>&copy; 2026 Circuitron, RVSCET Jamshedpur. All rights reserved.</p>
+    <footer class="relative z-10 border-t border-primary/20 bg-darkNavy/90 py-6 text-center text-xs text-gray-400">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p>&copy; 2026 Circuitron Club &bull; RVSCET Jamshedpur. All rights reserved.</p>
         <div class="flex items-center space-x-4">
           <a href="../index.html" class="hover:text-white transition-colors">Home</a>
           <a href="team.html" class="hover:text-white transition-colors">Team</a>
@@ -217,49 +222,47 @@
     <!-- Scripts -->
     <script src="../js/lucide.min.js"></script>
     <script>
-      // Database of Verified TechXpo 2.O Personnel
       const MEMBERS_DATABASE = {
         "TX2-EX-003": {
           id: "TX2-EX-003",
           name: "Subha Pain",
           role: "Technical Head",
           team: "Executive Team",
-          badgeType: "EXECUTIVE LEAD",
+          badgeType: "EXECUTIVE MEMBER",
           photo: "../assets/gallery2/subha pain.jpg",
-          cardImage: "../assets/subha_pain_id.png",
           cardHdImage: "../assets/subha_pain_id_hd.png",
           validDate: "30 NOV 2026",
-          department: "IoT, Robotics & Embedded Systems Division",
+          department: "IoT, Embedded Systems & Robotics Operations",
           institution: "R.V.S. College of Engineering & Technology, Jamshedpur",
-          status: "ACTIVE & FULLY VERIFIED",
-          securityHash: "TX2-E7A9-3C48-91BF-SP003",
+          status: "AUTHENTICATED EXECUTIVE MEMBER",
+          securityHash: "TX2-AUTH-9A82-SP003-VALID",
           privileges: [
             "Official Executive Team Authority — TechXpo 2.O",
-            "Hardware & Robotics Arena Technical Lead",
-            "Command of Embedded Systems & IoT Demonstrations",
-            "Full Backstage, Arena & VIP Hospitality Access",
-            "Authorized Signatory for Technical Event Protocol"
+            "Technical Infrastructure & Robotics Arena Lead",
+            "Hardware Lab & Demonstration Command",
+            "Full Backstage, Arena & VIP Hospitality Clearance",
+            "Official Executive Signatory for Event Protocol"
           ],
-          bio: "Key executive driving technical infrastructure, IoT showcase setups, and hardware innovations for TechXpo 2.O at RVSCET."
+          bio: "Key executive in charge of technical architecture, robotics arenas, and hardware demonstrations for TechXpo 2.O."
         },
         "TX2-EX-001": {
           id: "TX2-EX-001",
           name: "Umang Kumar Sharma",
           role: "President",
           team: "Executive Team",
-          badgeType: "EXECUTIVE LEAD",
+          badgeType: "EXECUTIVE MEMBER",
           photo: "",
           initials: "UK",
-          cardImage: "",
+          cardHdImage: "",
           validDate: "30 NOV 2026",
-          department: "Circuitron Executive Directorate",
+          department: "Executive Directorate",
           institution: "R.V.S. College of Engineering & Technology, Jamshedpur",
-          status: "ACTIVE & FULLY VERIFIED",
-          securityHash: "TX2-E1B4-4D21-88AE-UK001",
+          status: "AUTHENTICATED EXECUTIVE MEMBER",
+          securityHash: "TX2-AUTH-E1B4-UK001-VALID",
           privileges: [
-            "Overall President & Executive Convener",
-            "Chief Executive Direction & External Liaison",
-            "All-Access Event Command"
+            "Executive President & Convener",
+            "Institutional Coordination & Strategic Command",
+            "All-Access Event Protocol"
           ],
           bio: "Inspiring leadership, driving innovation, and shaping the club’s future."
         },
@@ -268,79 +271,24 @@
           name: "Akshat Anand",
           role: "PR & Communication Head",
           team: "Executive Team",
-          badgeType: "EXECUTIVE LEAD",
+          badgeType: "EXECUTIVE MEMBER",
           photo: "",
           initials: "AA",
-          cardImage: "",
+          cardHdImage: "",
           validDate: "30 NOV 2026",
           department: "PR & Communications Directorate",
           institution: "R.V.S. College of Engineering & Technology, Jamshedpur",
-          status: "ACTIVE & FULLY VERIFIED",
-          securityHash: "TX2-E2C7-99B2-44FA-AA002",
+          status: "AUTHENTICATED EXECUTIVE MEMBER",
+          securityHash: "TX2-AUTH-99B2-AA002-VALID",
           privileges: [
             "PR & Corporate Communication Command",
-            "Media & Delegate Accreditation Authority",
+            "Media & Delegate Accreditation",
             "All-Access Event Protocol"
           ],
           bio: "Building connections, strengthening communication, and creating a lasting impact."
-        },
-        "TX2-FC-001": {
-          id: "TX2-FC-001",
-          name: "Prof. Dr. Sushanta Mahanty",
-          role: "Head PI (Faculty Coordinator)",
-          team: "Academic Advisory Board",
-          badgeType: "FACULTY PATRON",
-          photo: "../assets/gallery2/prof .shushant mahanty.jpg",
-          validDate: "30 NOV 2026",
-          department: "Academic Advisory Board & Principal Investigator",
-          institution: "R.V.S. College of Engineering & Technology, Jamshedpur",
-          status: "ACTIVE & FULLY VERIFIED",
-          securityHash: "TX2-FC01-SM77-A281-PI001",
-          privileges: [
-            "Principal Investigator & Faculty Advisor",
-            "Institutional Academic Oversight"
-          ],
-          bio: "Leading the technical vision and development of the club."
-        },
-        "TX2-FC-002": {
-          id: "TX2-FC-002",
-          name: "Prof. Dr. Vikash Kumar",
-          role: "Co-PI (Faculty Coordinator)",
-          team: "Academic Advisory Board",
-          badgeType: "FACULTY PATRON",
-          photo: "../assets/gallery2/prof vikash kumar.jpg",
-          validDate: "30 NOV 2026",
-          department: "Academic Advisory Board & Co-Principal Investigator",
-          institution: "R.V.S. College of Engineering & Technology, Jamshedpur",
-          status: "ACTIVE & FULLY VERIFIED",
-          securityHash: "TX2-FC02-VK33-B912-PI002",
-          privileges: [
-            "Co-Principal Investigator & Faculty Advisor",
-            "Research & Innovation Advisory"
-          ],
-          bio: "Guiding research and innovation initiatives."
-        },
-        "TX2-CR-001": {
-          id: "TX2-CR-001",
-          name: "Som Mahapatra",
-          role: "Technical Head (Core Team)",
-          team: "Core Team",
-          badgeType: "CORE COORDINATOR",
-          photo: "../assets/gallery2/som mahapatra.jpg",
-          validDate: "30 NOV 2026",
-          department: "Technical Logistics Division",
-          institution: "R.V.S. College of Engineering & Technology, Jamshedpur",
-          status: "ACTIVE & FULLY VERIFIED",
-          securityHash: "TX2-CR01-SM44-C309-TH001",
-          privileges: [
-            "Technical Operations & Arena Logistics",
-            "Project Demo Coordinator"
-          ],
-          bio: "Core technical coordinator overseeing equipment setup and workshop labs."
         }
       };
 
-      // Extract ID from URL
       function getMemberIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id') || params.get('member') || params.get('mid');
@@ -353,23 +301,18 @@
 
         if (!member) {
           container.innerHTML = `
-            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-red-500/40 text-center space-y-6 max-w-2xl mx-auto shadow-[0_0_30px_rgba(239,68,68,0.2)]">
-              <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400">
-                <i data-lucide="shield-alert" class="w-10 h-10"></i>
+            <div class="glass-card p-8 rounded-3xl border border-red-500/40 text-center space-y-4 max-w-lg mx-auto shadow-[0_0_30px_rgba(239,68,68,0.2)]">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400">
+                <i data-lucide="shield-alert" class="w-8 h-8"></i>
               </div>
-              <div class="space-y-2">
-                <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-300 font-mono text-xs uppercase tracking-wider font-bold">Unverified / ID Not Found</span>
-                <h2 class="text-2xl sm:text-3xl font-orbitron font-bold text-white">Credential Verification Failed</h2>
-                <p class="text-gray-300 text-sm max-w-md mx-auto">The Member ID <code class="text-red-400 bg-red-500/10 px-2 py-0.5 rounded font-mono font-bold">${memberId}</code> could not be validated against the official TechXpo 2.O security registry.</p>
+              <div class="space-y-1">
+                <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-300 font-mono text-xs font-bold uppercase">ID Unrecognized</span>
+                <h2 class="text-xl font-orbitron font-bold text-white">Authentication Failed</h2>
+                <p class="text-gray-300 text-xs">The Member ID <code class="text-red-400 font-bold">${memberId}</code> is not found in the verified registry.</p>
               </div>
-              <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <button onclick="loadMember('TX2-EX-003')" class="btn-primary text-xs py-2 px-5 font-bold">
-                  <span>View Verified Subha Pain (TX2-EX-003)</span>
-                </button>
-                <a href="contact.html" class="btn-secondary text-xs py-2 px-5 font-bold">
-                  <span>Contact Secretariat Desk</span>
-                </a>
-              </div>
+              <button onclick="loadMember('TX2-EX-003')" class="btn-primary text-xs py-2 px-5 font-bold">
+                <span>View Subha Pain (TX2-EX-003)</span>
+              </button>
             </div>
           `;
           if (window.lucide) lucide.createIcons();
@@ -378,154 +321,113 @@
 
         const isSubha = (member.id === 'TX2-EX-003');
 
-        // Render Verified Profile
         container.innerHTML = `
-          <div class="glass-panel p-6 sm:p-10 rounded-3xl border-2 border-emerald-500/40 hologram-card shadow-[0_0_40px_rgba(16,185,129,0.18)] relative">
+          <div class="glass-panel p-5 sm:p-8 rounded-3xl border-2 border-emerald-400/60 hologram-card shadow-[0_0_45px_rgba(16,185,129,0.22)] relative">
             <div class="laser-scan-line"></div>
 
-            <!-- Top Verified Bar -->
-            <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <!-- Top Banner -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-white/10">
               <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-                  <i data-lucide="badge-check" class="w-6 h-6"></i>
+                <div class="w-11 h-11 rounded-2xl bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-300 auth-pulse-ring">
+                  <i data-lucide="badge-check" class="w-7 h-7"></i>
                 </div>
                 <div>
                   <div class="flex items-center space-x-2">
-                    <span class="font-orbitron font-bold text-emerald-400 text-sm sm:text-base tracking-wide">STATUS: ACTIVE &amp; VERIFIED</span>
+                    <span class="font-orbitron font-extrabold text-emerald-400 text-sm sm:text-base tracking-wide">
+                      AUTHENTICATED EXECUTIVE MEMBER
+                    </span>
                     <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
                   </div>
-                  <p class="text-[11px] font-mono text-gray-300">Official TechXpo 2.O Executive Credential</p>
+                  <p class="text-[11px] font-mono text-gray-300">TechXpo 2.O &bull; 30 November 2026 &bull; RVSCET</p>
                 </div>
               </div>
 
-              <!-- Security Hash Pill -->
-              <div class="px-3.5 py-1.5 rounded-xl bg-darkNavy/90 border border-primary/30 flex items-center space-x-2 font-mono text-xs">
-                <i data-lucide="fingerprint" class="w-3.5 h-3.5 text-accent"></i>
-                <span class="text-gray-400">HASH:</span>
-                <span class="text-accent font-bold">${member.securityHash}</span>
+              <div class="px-3 py-1 rounded-xl bg-darkNavy/90 border border-emerald-500/40 flex items-center space-x-2 font-mono text-xs">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span class="text-emerald-400 font-bold">CLEARANCE: LEVEL-1</span>
               </div>
             </div>
 
-            <!-- Main Credential Grid -->
-            <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Main Layout -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
               
-              <!-- Left Column: Photo & Hex Badge -->
-              <div class="lg:col-span-4 flex flex-col items-center text-center space-y-4">
-                <div class="relative w-44 h-44 sm:w-52 sm:h-52">
-                  <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-500 via-accent to-primary blur-md opacity-50 animate-pulse"></div>
-                  <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-emerald-400/80 bg-darkNavy shadow-2xl flex items-center justify-center p-1">
+              <!-- Photo -->
+              <div class="md:col-span-4 flex flex-col items-center text-center space-y-3">
+                <div class="relative w-40 h-40 sm:w-48 sm:h-48">
+                  <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-500 via-accent to-primary blur-md opacity-60 animate-pulse"></div>
+                  <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-emerald-400 bg-darkNavy shadow-2xl flex items-center justify-center p-1">
                     ${member.photo 
                       ? `<img src="${member.photo}" alt="${member.name}" class="w-full h-full object-cover rounded-2xl" />`
                       : `<div class="w-full h-full rounded-2xl bg-gradient-to-tr from-darkNavy via-primary/20 to-accent/20 flex flex-col items-center justify-center">
-                          <span class="font-orbitron font-extrabold text-4xl text-accent">${member.initials || 'TX'}</span>
+                          <span class="font-orbitron font-extrabold text-3xl text-accent">${member.initials || 'TX'}</span>
                         </div>`
                     }
-                    <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-darkNavy/95 border border-emerald-400 text-emerald-400 font-mono text-[10px] font-bold flex items-center space-x-1">
-                      <i data-lucide="check" class="w-3 h-3"></i>
-                      <span>AUTHENTIC</span>
+                    <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-darkNavy/95 border border-emerald-400 text-emerald-400 font-mono text-[9px] font-bold flex items-center space-x-1 shadow-lg">
+                      <i data-lucide="check" class="w-2.5 h-2.5"></i>
+                      <span>AUTHENTICATED</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- Member ID Badge -->
-                <div class="w-full space-y-1">
-                  <span class="text-[10px] uppercase font-mono tracking-widest text-gray-400 font-semibold">OFFICIAL ID</span>
-                  <div class="px-4 py-2 rounded-xl bg-primary/10 border border-primary/40 text-center">
-                    <span class="font-orbitron font-black text-xl text-accent tracking-wider">${member.id}</span>
+                <div class="w-full">
+                  <div class="px-3 py-1.5 rounded-xl bg-primary/10 border border-primary/40 text-center font-mono">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest block font-semibold">MEMBER ID</span>
+                    <span class="font-orbitron font-black text-lg text-accent tracking-wider">${member.id}</span>
                   </div>
                 </div>
-
-                <!-- Validity Badge -->
-                <div class="w-full px-3 py-1.5 rounded-xl bg-darkNavy/80 border border-white/10 flex items-center justify-between text-xs font-mono text-gray-300">
-                  <span class="text-gray-400">EVENT DATE:</span>
-                  <span class="text-white font-bold">${member.validDate}</span>
-                </div>
-
-                ${isSubha ? `
-                  <a href="../assets/subha_pain_id_hd.png" download="Subha_Pain_TechXpo2_ID.png" class="btn-primary w-full py-2.5 px-4 text-xs font-bold flex items-center justify-center space-x-2">
-                    <i data-lucide="download" class="w-4 h-4"></i>
-                    <span>Download Scannable ID Card</span>
-                  </a>
-                ` : ''}
               </div>
 
-              <!-- Right Column: Verification Details & Credential Records -->
-              <div class="lg:col-span-8 space-y-6">
+              <!-- Details -->
+              <div class="md:col-span-8 space-y-4">
                 
-                <!-- Person Title & Designation -->
+                <div>
+                  <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold font-mono uppercase tracking-wider mb-1">
+                    <i data-lucide="award" class="w-3 h-3"></i>
+                    <span>${member.team}</span>
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl font-black font-orbitron text-white tracking-wide">${member.name}</h2>
+                  <p class="text-primary font-orbitron font-bold text-base">${member.role}</p>
+                </div>
+
+                <!-- Info Table -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 rounded-xl bg-darkNavy/80 border border-white/10 space-y-0.5">
+                    <span class="text-[10px] font-mono text-gray-400 block">HOST INSTITUTION</span>
+                    <p class="font-semibold text-white">${member.institution}</p>
+                  </div>
+                  <div class="p-3 rounded-xl bg-darkNavy/80 border border-white/10 space-y-0.5">
+                    <span class="text-[10px] font-mono text-gray-400 block">OPERATIONAL WING</span>
+                    <p class="font-semibold text-white">${member.department}</p>
+                  </div>
+                </div>
+
+                <!-- Privileges list -->
                 <div class="space-y-1.5">
-                  <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold font-mono uppercase tracking-wider">
-                    <i data-lucide="award" class="w-3.5 h-3.5"></i>
-                    <span>${member.badgeType} &bull; ${member.team}</span>
-                  </div>
-                  <h2 class="text-2xl sm:text-4xl font-black font-orbitron text-white tracking-wide">${member.name}</h2>
-                  <p class="text-primary font-orbitron font-semibold text-base sm:text-lg">${member.role}</p>
-                </div>
-
-                <!-- Institution & Department Details -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div class="p-4 rounded-2xl bg-darkNavy/70 border border-white/10 space-y-1">
-                    <span class="text-[11px] font-mono text-gray-400 flex items-center space-x-1.5">
-                      <i data-lucide="building-2" class="w-3.5 h-3.5 text-primary"></i>
-                      <span>HOST INSTITUTION</span>
-                    </span>
-                    <p class="text-xs sm:text-sm font-semibold text-white">${member.institution}</p>
-                  </div>
-                  <div class="p-4 rounded-2xl bg-darkNavy/70 border border-white/10 space-y-1">
-                    <span class="text-[11px] font-mono text-gray-400 flex items-center space-x-1.5">
-                      <i data-lucide="cpu" class="w-3.5 h-3.5 text-accent"></i>
-                      <span>DIVISION / WING</span>
-                    </span>
-                    <p class="text-xs sm:text-sm font-semibold text-white">${member.department}</p>
-                  </div>
-                </div>
-
-                <!-- Executive Privileges / Authorization Matrix -->
-                <div class="space-y-3">
-                  <h4 class="text-xs sm:text-sm font-orbitron font-bold text-white flex items-center space-x-2">
-                    <i data-lucide="shield" class="w-4 h-4 text-emerald-400"></i>
-                    <span>Verified Executive Authorities &amp; Responsibilities:</span>
+                  <h4 class="text-xs font-orbitron font-bold text-white flex items-center space-x-1.5">
+                    <i data-lucide="shield" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span>Executive Accreditations &amp; Permissions:</span>
                   </h4>
-                  <div class="space-y-2">
-                    ${member.privileges.map(priv => `
-                      <div class="flex items-start space-x-2.5 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-gray-200">
-                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
-                        <span>${priv}</span>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                    ${member.privileges.slice(0, 4).map(priv => `
+                      <div class="flex items-center space-x-2 p-2 rounded-lg bg-white/5 border border-white/5 text-[11px] text-gray-200">
+                        <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i>
+                        <span class="truncate">${priv}</span>
                       </div>
                     `).join('')}
                   </div>
                 </div>
 
-                <!-- ID Card Preview Toggle (for Subha Pain) -->
+                <!-- Card action buttons -->
                 ${isSubha ? `
-                  <div class="p-5 rounded-2xl bg-darkNavy/90 border border-accent/30 space-y-4">
-                    <div class="flex items-center justify-between">
-                      <div class="flex items-center space-x-2">
-                        <i data-lucide="qr-code" class="w-4 h-4 text-accent"></i>
-                        <span class="text-xs font-orbitron font-bold text-white">Scannable Badge Preview</span>
-                      </div>
-                      <span class="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LIVE QR READY</span>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row items-center gap-4 bg-darkNavy/60 p-3 rounded-xl border border-white/5">
-                      <img src="../assets/subha_pain_id.png" alt="Subha Pain Verified ID Card" class="w-28 sm:w-32 rounded-lg shadow-lg border border-primary/30 object-contain hover:scale-105 transition-transform" />
-                      <div class="text-xs space-y-1.5 flex-1 text-center sm:text-left">
-                        <p class="text-gray-200 font-semibold">Subha Pain — Executive ID Badge</p>
-                        <p class="text-[11px] text-gray-400 leading-relaxed font-mono">
-                          The embedded QR code has been verified and redirects instantly to this page (<code class="text-accent text-[10px]">https://ankitcore.github.io/circuitron_rvs/verify.html?id=TX2-EX-003</code>).
-                        </p>
-                        <div class="pt-1 flex flex-wrap gap-2">
-                          <a href="../assets/subha_pain_id_hd.png" target="_blank" class="px-3 py-1 rounded-lg bg-primary/20 border border-primary/40 text-[11px] font-semibold text-primary hover:text-white transition-all inline-flex items-center space-x-1">
-                            <i data-lucide="external-link" class="w-3 h-3"></i>
-                            <span>View Full Card HD</span>
-                          </a>
-                          <button onclick="window.print()" class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-semibold text-gray-300 hover:text-white transition-all inline-flex items-center space-x-1">
-                            <i data-lucide="printer" class="w-3 h-3"></i>
-                            <span>Print Certificate</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="pt-2 flex flex-wrap gap-2.5">
+                    <a href="../assets/subha_pain_id_hd.png" download="Subha_Pain_TechXpo2_ID.png" class="btn-primary py-2 px-4 text-xs font-bold flex items-center space-x-2">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                      <span>Download ID Card</span>
+                    </a>
+                    <a href="../assets/subha_pain_id_hd.png" target="_blank" class="btn-secondary py-2 px-4 text-xs font-bold flex items-center space-x-1.5">
+                      <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                      <span>View Full ID</span>
+                    </a>
                   </div>
                 ` : ''}
 
@@ -540,20 +442,16 @@
       }
 
       function loadMember(id) {
-        // Update URL query string without reloading
         const url = new URL(window.location);
         url.searchParams.set('id', id);
         window.history.pushState({}, '', url);
 
-        // Update input field
         const input = document.getElementById('search-id-input');
         if (input) input.value = id;
 
-        // Render member details
         renderMember(id);
       }
 
-      // Handle search form submission
       document.addEventListener('DOMContentLoaded', () => {
         const initialId = getMemberIdFromUrl();
         const input = document.getElementById('search-id-input');
@@ -565,9 +463,7 @@
           form.addEventListener('submit', (e) => {
             e.preventDefault();
             const val = input.value.trim().toUpperCase();
-            if (val) {
-              loadMember(val);
-            }
+            if (val) loadMember(val);
           });
         }
       });
